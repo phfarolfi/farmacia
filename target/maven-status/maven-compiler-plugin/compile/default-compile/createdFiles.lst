@@ -44,6 +44,7 @@ use_case\TelaVenda$1.class
 use_case\Farmaceutico.class
 use_case\Dinheiro.class
 use_case\TelaFazerPagamento$3.class
+use_case\TelaFazerPedido$7.class
 use_case\TelaFazerPedido$3.class
 use_case\ItemEstoque.class
 use_case\TelaCadastrarProduto.class
