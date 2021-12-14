@@ -217,7 +217,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         });
 
         labelDose.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        labelDose.setText("DOSE");
+        labelDose.setText("DOSE (mg)");
 
         labelDescricao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelDescricao.setText("DESCRIÇÃO DO PRODUTO");
@@ -254,7 +254,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Principio Ativo", "Dose", "Remover"
+                "Principio Ativo", "Dose (mg)", "Remover"
             }
         ) {
             Class[] types = new Class [] {

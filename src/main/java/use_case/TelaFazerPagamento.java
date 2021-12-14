@@ -101,6 +101,11 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
 
         campoValidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         campoValidade.setText("__/__");
+        campoValidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoValidadeFocusLost(evt);
+            }
+        });
         campoValidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoValidadeMouseClicked(evt);
@@ -109,6 +114,11 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
 
         campoCodigoDeSeguranca.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         campoCodigoDeSeguranca.setText("000");
+        campoCodigoDeSeguranca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoCodigoDeSegurancaFocusLost(evt);
+            }
+        });
         campoCodigoDeSeguranca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoCodigoDeSegurancaMouseClicked(evt);
@@ -124,8 +134,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         labelNumeroDeParcelas.setText("NÚMERO DE PARCELAS");
 
         campoNumeroDeParcelas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        campoNumeroDeParcelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "À vista (R$".concat(this.telaVenda.getValorTotalDaCompra()).concat(")")
-        }));
+        campoNumeroDeParcelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "À vista", "Parcelamento em 2x" }));
         campoNumeroDeParcelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNumeroDeParcelasActionPerformed(evt);
@@ -157,7 +166,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 49, 79));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("FINALIZAR VENDA");
+        jButton1.setText("RECEBER PAGAMENTO");
 
         labelSubtotalCompra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelSubtotalCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -205,44 +214,41 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(botaoVoltar)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelFormaDePagamento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(labelNumeroDoCartao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNumeroDoCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelValidade)
-                                    .addComponent(labelCodigoDeSeguranca))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoCodigoDeSeguranca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addComponent(labelNomeImpressoNoCartao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoNomeImpressoNoCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelFormaDePagamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(labelNumeroDoCartao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNumeroDoCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelValidade)
+                            .addComponent(labelCodigoDeSeguranca))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCodigoDeSeguranca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(labelNomeImpressoNoCartao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoNomeImpressoNoCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
                         .addComponent(labelNumeroDeParcelas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNumeroDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(143, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(campoNumeroDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(labelSubtotalCompra)
                         .addGap(5, 5, 5)
                         .addComponent(campoSubtotalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144))))
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         pack();
@@ -296,6 +302,18 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
     private void campoNumeroDeParcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroDeParcelasActionPerformed
         
     }//GEN-LAST:event_campoNumeroDeParcelasActionPerformed
+
+    private void campoValidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoValidadeFocusLost
+        if ("".equals(campoValidade.getText())) {
+            campoValidade.setText("__/__");
+        }
+    }//GEN-LAST:event_campoValidadeFocusLost
+
+    private void campoCodigoDeSegurancaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoDeSegurancaFocusLost
+        if ("".equals(campoCodigoDeSeguranca.getText())) {
+            campoCodigoDeSeguranca.setText("000");
+        }
+    }//GEN-LAST:event_campoCodigoDeSegurancaFocusLost
     
     private void criaTabela() {
         DefaultTableModel modelTelaPagamento = (DefaultTableModel) tabelaProdutosDaVenda.getModel();

@@ -70,51 +70,46 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="botaoVoltar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="285" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelFormaDePagamento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoFormaDePagamento" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="labelNumeroDoCartao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoNumeroDoCartao" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelValidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelCodigoDeSeguranca" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="campoValidade" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="campoCodigoDeSeguranca" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="labelNomeImpressoNoCartao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="campoNomeImpressoNoCartao" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="labelFormaDePagamento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="campoFormaDePagamento" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="labelNumeroDoCartao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="campoNumeroDoCartao" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelValidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCodigoDeSeguranca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="campoValidade" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="campoCodigoDeSeguranca" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="labelNomeImpressoNoCartao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="campoNomeImpressoNoCartao" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="labelNumeroDeParcelas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="campoNumeroDeParcelas" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="285" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="labelSubtotalCompra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="campoSubtotalCompra" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="71" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="143" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -210,6 +205,7 @@
         <Property name="text" type="java.lang.String" value="__/__"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoValidadeFocusLost"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="campoValidadeMouseClicked"/>
       </Events>
     </Component>
@@ -221,6 +217,7 @@
         <Property name="text" type="java.lang.String" value="000"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoCodigoDeSegurancaFocusLost"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="campoCodigoDeSegurancaMouseClicked"/>
       </Events>
     </Component>
@@ -252,8 +249,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;&#xc0; vista (R$&quot;.concat(this.telaVenda.getValorTotalDaCompra()).concat(&quot;)&quot;)&#xd;&#xa; })" type="code"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="&#xc0; vista"/>
+            <StringItem index="1" value="Parcelamento em 2x"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
@@ -300,7 +300,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FINALIZAR VENDA"/>
+        <Property name="text" type="java.lang.String" value="RECEBER PAGAMENTO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSubtotalCompra">

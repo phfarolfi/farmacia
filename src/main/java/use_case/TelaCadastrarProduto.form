@@ -273,7 +273,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DOSE"/>
+        <Property name="text" type="java.lang.String" value="DOSE (mg)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelDescricao">
@@ -412,7 +412,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="0">
                     <Column editable="true" title="Principio Ativo" type="java.lang.String"/>
-                    <Column editable="true" title="Dose" type="java.lang.Double"/>
+                    <Column editable="true" title="Dose (mg)" type="java.lang.Double"/>
                     <Column editable="true" title="Remover" type="java.lang.Boolean"/>
                   </Table>
                 </Property>
