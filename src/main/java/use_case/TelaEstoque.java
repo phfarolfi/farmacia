@@ -4,6 +4,9 @@
  */
 package use_case;
 import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +21,7 @@ public class TelaEstoque extends javax.swing.JFrame {
         this.setSize(1280,751);
         this.controller = controller;
         this.produtos = this.controller.getProdutos();
+        preencheTabelaEstoque();
     }
 
     /**
@@ -30,7 +34,9 @@ public class TelaEstoque extends javax.swing.JFrame {
     private void initComponents() {
 
         botaoVoltar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelEstoque = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaEstoque = new javax.swing.JTable();
 
         botaoVoltar.setBackground(new java.awt.Color(18, 17, 73));
         botaoVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -42,37 +48,93 @@ public class TelaEstoque extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("ESTOQUE");
+        labelEstoque.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        labelEstoque.setText("ESTOQUE");
+
+        tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CÓDIGO", "NOME", "PREÇO", "CATEGORIA", "FABRICANTE"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaEstoque.getTableHeader().setResizingAllowed(false);
+        tabelaEstoque.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelaEstoque);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(288, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(labelEstoque)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(277, 277, 277))
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(104, 104, 104)
                 .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190)
-                .addComponent(jLabel1)
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoVoltar)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(botaoVoltar)
+                .addGap(27, 27, 27)
+                .addComponent(labelEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.controller.iniciarTelaInicial();
     }//GEN-LAST:event_botaoVoltarActionPerformed
-
+    
+    private void preencheTabelaEstoque() {
+        DefaultTableModel model = (DefaultTableModel) tabelaEstoque.getModel();
+        
+        for(int i=0; i<produtos.size(); i++) {
+            int codigo = (int) this.produtos.get(i).getCodigo();
+            String nome = this.produtos.get(i).getNome();
+            double preco = this.produtos.get(i).getPreco();
+            String categoria = this.produtos.get(i).getCategoria().getNome();
+            String fabricante = this.produtos.get(i).getFabricante().getNome();
+            
+            model.addRow(new Object[]{codigo, nome, preco, categoria, fabricante});
+        }
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
+        for(int i=0; i<tabelaEstoque.getColumnCount(); i++){
+            tabelaEstoque.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelEstoque;
+    private javax.swing.JTable tabelaEstoque;
     // End of variables declaration//GEN-END:variables
 }

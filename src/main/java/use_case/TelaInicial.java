@@ -59,6 +59,7 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoCadastrarProduto.setForeground(new java.awt.Color(255, 49, 79));
         botaoCadastrarProduto.setText("CADASTRAR \nPRODUTO");
         botaoCadastrarProduto.setToolTipText("Cadastrar um produto no estoque");
+        botaoCadastrarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botaoCadastrarProduto.setPreferredSize(new java.awt.Dimension(250, 250));
         botaoCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +79,10 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        botaoEstoque.setText("Estoque");
+        botaoEstoque.setBackground(new java.awt.Color(0, 0, 51));
+        botaoEstoque.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botaoEstoque.setForeground(new java.awt.Color(255, 49, 79));
+        botaoEstoque.setText("ESTOQUE");
         botaoEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEstoqueActionPerformed(evt);
@@ -111,7 +115,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(600, Short.MAX_VALUE))
+                .addContainerGap(603, Short.MAX_VALUE))
         );
 
         pack();
