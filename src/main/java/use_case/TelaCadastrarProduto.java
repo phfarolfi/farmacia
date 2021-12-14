@@ -36,6 +36,8 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         painelTabela.setVisible(false);
         botaoAdicionarPrincipioAtivo.setVisible(false);
         
+        this.produtos = this.controller.getProdutos();
+        
         //Adicionando Categorias cadastradas no ComboBox
         categorias = this.controller.getCategoriasProduto();        
         String[] categoriasNome = new String[categorias.size()+1];        
