@@ -10,78 +10,19 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaVenda extends javax.swing.JFrame {
     private ControladorFarmacia controller;
+    private List<Produto> produtos;
+    private double valorTotal = 0.0;
+    private DecimalFormat df;
 
     public TelaVenda(ControladorFarmacia controller) {
         this.controller = controller;
-        df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
-        teste();        
-        initComponents();
+        this.produtos = this.controller.getProdutos();
+        this.df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));    
+        
+        initComponents(); 
         erroCodigo.setVisible(false);
         botaoLimpar.setEnabled(false);
     }
-
-public void teste(){
-        produtos = new ArrayList<Produto>();
-        
-        // CategoriaProduto(String nome, String descricao)
-        categoria1 = new CategoriaProduto("Categoria de Produto 1", "Descrição de Categoria de Produto 1");        
-        categoria2 = new CategoriaProduto("Categoria de Produto 2", "Descrição de Categoria de Produto 2");
-        categoria3 = new CategoriaProduto("Saúde e Bem-estar", "Descrição de Categoria de Produto 3");
-        categoria4 = new CategoriaProduto("Beleza e Dermocosméticos", "Descrição de Categoria de Produto 4");
-        categoria5 = new CategoriaProduto("Conveniência", "Descrição de Categoria de Produto 5");
-        categoria6 = new CategoriaProduto("Mundo Infantil", "Descrição de Categoria de Produto 6");
-        categoria7 = new CategoriaProduto("Outros", "Descrição de Categoria de Produto 7");
-        
-        // Fabricante(String nome)                
-        fabricante1 = new Fabricante("Fabricante");
-        fabricante2 = new Fabricante("EMS");
-        fabricante3 = new Fabricante("Outros");
-        
-        // Produto(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante)
-        produto1 = new Produto("Produto 1", "Descrição do produto 1", 1.0, categoria1, fabricante1);  
-        produto2 = new Produto("Produto 2", "Descrição do produto 2", 2.50, categoria2, fabricante1); 
-        produto3 = new Produto("Produto 3", "Descrição do produto 3", 12.99, categoria1, fabricante1); 
-        produto4 = new Produto("Produto 4", "Descrição do produto 4", 7.58, categoria2, fabricante1); 
-        produto5 = new Produto("Adoçante", "Descrição do produto 5", 8.50, categoria5, fabricante3); 
-        
-        // Tarja(String nome, boolean precisaReceita)
-        tarja1 = new Tarja("Livre Comercialização", false);
-        tarja2 = new Tarja("Tarja Vermelha sem retenção de receita", false);
-        tarja3 = new Tarja("Tarja Vermelha com retenção de receita", true);
-        tarja4 = new Tarja("Tarja Preta", true);
-        
-        // PrincipioAtivo(String nome)
-        principioAtivo1 = new PrincipioAtivo("PrincipioAtivo 1");
-        principioAtivo2 = new PrincipioAtivo("PrincipioAtivo 2");
-        principioAtivo3 = new PrincipioAtivo("PrincipioAtivo 3");
-        principioAtivo4 = new PrincipioAtivo("PrincipioAtivo 4");
-        
-        // ItemPrincipioAtivo(PrincipioAtivo principioAtivo, double dose)
-        itemPrincipioAtivo1 = new ItemPrincipioAtivo(principioAtivo1, 0.5);
-        itemPrincipioAtivo2 = new ItemPrincipioAtivo(principioAtivo2, 0.5);
-        itemPrincipioAtivo3 = new ItemPrincipioAtivo(principioAtivo3, 0.5);
-        itemPrincipioAtivo4 = new ItemPrincipioAtivo(principioAtivo4, 0.5);
-        
-        listaPrincipioAtivo1 = new ArrayList<ItemPrincipioAtivo>();
-        listaPrincipioAtivo1.add(itemPrincipioAtivo1);
-        
-        // Medicamento(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, Tarja tarja, List<ItemPrincipioAtivo> itemPrincipioAtivo)
-        med1 = new Medicamento("BraiDorflex", "Remédio para dor", 21.99, categoria1, fabricante1, tarja1, listaPrincipioAtivo1);
-        med2 = new Medicamento("Ivermectina", "Remédio para piolho", 15.00, categoria1, fabricante2, tarja2, listaPrincipioAtivo1);
-        med3 = new Medicamento("Rivotril", "Remédio antidepressivo", 30.00, categoria1, fabricante3, tarja4, listaPrincipioAtivo2);
-        med4 = new Medicamento("Azitromicina", "Remédio 4", 30.00, categoria1, fabricante3, tarja3, listaPrincipioAtivo2);
-        
-        produtos.add(produto1);
-        produtos.add(produto2);
-        produtos.add(produto3);
-        produtos.add(produto4);
-        produtos.add(produto5);
-        produtos.add(med1);
-        produtos.add(med2);
-        produtos.add(med3);
-        produtos.add(med4);
-
-}
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -457,11 +398,11 @@ public void teste(){
             try {
                 codigo = Integer.parseInt(campoCodigo.getText());
                 int i;
-                for(i=0; i<produtos.size();i++){
-                    if(codigo == produtos.get(i).getCodigo()){
-                        campoNome.setText(produtos.get(i).getNome());
-                        campoCategoria.setText(produtos.get(i).getCategoria().getNome());
-                        String valor = df.format(produtos.get(i).getPreco());
+                for(i=0; i<this.produtos.size();i++){
+                    if(codigo == this.produtos.get(i).getCodigo()){
+                        campoNome.setText(this.produtos.get(i).getNome());
+                        campoCategoria.setText(this.produtos.get(i).getCategoria().getNome());
+                        String valor = df.format(this.produtos.get(i).getPreco());
                         //System.out.println(df.format(valor));
                         campoPrecoUnitario.setText(valor);
                         campoPrecoTotal.setText(valor);
@@ -472,7 +413,7 @@ public void teste(){
                         break;
                     }
                 }
-                if(i==produtos.size())
+                if(i==this.produtos.size())
                 erroCodigo.setVisible(true);
             }
             catch(RuntimeException error){
@@ -516,67 +457,7 @@ public void teste(){
     public javax.swing.JTable getTabelaDeProdutos() {
         return this.tabelaDeProdutos;
     }
-    /**
-     * @param args the command line arguments
-     */
     
-    /*
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaVenda(this).setVisible(true);
-            }
-        });
-    }
-    */
-    
-    // TESTE
-    CategoriaProduto categoria1;
-    CategoriaProduto categoria2;
-    CategoriaProduto categoria3;
-    CategoriaProduto categoria4;
-    CategoriaProduto categoria5;
-    CategoriaProduto categoria6;
-    CategoriaProduto categoria7;
-    
-    Fabricante fabricante1;
-    Fabricante fabricante2;
-    Fabricante fabricante3;
-    
-    List<Produto> produtos;
-    
-    Produto produto1;
-    Produto produto2;
-    Produto produto3;
-    Produto produto4;
-    Produto produto5;
-    
-    Medicamento med1;
-    Medicamento med2;
-    Medicamento med3;
-    Medicamento med4;
-    
-    PrincipioAtivo principioAtivo1;
-    PrincipioAtivo principioAtivo2;
-    PrincipioAtivo principioAtivo3;
-    PrincipioAtivo principioAtivo4;
-    
-    ItemPrincipioAtivo itemPrincipioAtivo1;
-    ItemPrincipioAtivo itemPrincipioAtivo2;
-    ItemPrincipioAtivo itemPrincipioAtivo3;
-    ItemPrincipioAtivo itemPrincipioAtivo4;
-    
-    List<ItemPrincipioAtivo> listaPrincipioAtivo1;
-    List<ItemPrincipioAtivo> listaPrincipioAtivo2;
-    
-    Tarja tarja1;
-    Tarja tarja2;
-    Tarja tarja3;
-    Tarja tarja4;
-    // TESTE
-
-    private double valorTotal = 0.0;
-    DecimalFormat df;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarAoCarrinho;
     private javax.swing.JButton botaoCancelarVenda;

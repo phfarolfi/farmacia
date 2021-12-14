@@ -14,6 +14,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaCadastrarProduto extends javax.swing.JFrame {
     private ControladorFarmacia controller;
+    List<CategoriaProduto> categorias;    
+    List<Fabricante> fabricantes;
+    List<Tarja> tarjas;    
+    List<PrincipioAtivo> principiosAtivos;    
+    List<Produto> produtos;
     /**
      * Creates new form TelaCadastrarProduto
      */
@@ -536,11 +541,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFabricanteActionPerformed
 
-    List<CategoriaProduto> categorias;    
-    List<Fabricante> fabricantes;
-    List<Tarja> tarjas;    
-    List<PrincipioAtivo> principiosAtivos;    
-    List<Produto> produtos;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarPrincipioAtivo;

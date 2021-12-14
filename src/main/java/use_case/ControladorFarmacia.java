@@ -9,7 +9,8 @@ public class ControladorFarmacia {
     private List<Tarja> tarjas;
     private List<CategoriaProduto> categorias;
     private List<Fabricante> fabricantes;
-    
+    private List<Fornecedor> fornecedores;
+
     private javax.swing.JFrame view;
 
     public ControladorFarmacia(){
@@ -20,6 +21,7 @@ public class ControladorFarmacia {
         this.tarjas = new ArrayList<Tarja>();
         this.categorias = new ArrayList<CategoriaProduto>();
         this.fabricantes = new ArrayList<Fabricante>();
+        this.fornecedores = new ArrayList<Fornecedor>();
         teste();
         this.view = new TelaInicial(this);
     }
@@ -71,6 +73,15 @@ public class ControladorFarmacia {
         return this.principiosAtivo;
     }
     
+    public void cadastrarFornecedor(Fornecedor fornecedor){        
+        this.fornecedores.add(fornecedor);  
+        //System.out.println(this.fornecedores);
+    }
+    
+    public List<Fornecedor> getFornecedores(){
+        return this.fornecedores;
+    }
+    
     public void teste(){
     	CategoriaProduto categoria1 = new CategoriaProduto("Medicamentos", "Descrição de Categoria de Produto 1");        
         CategoriaProduto categoria2 = new CategoriaProduto("Higiene e Cuidados Pessoais", "Descrição de Categoria de Produto 2");
@@ -96,6 +107,15 @@ public class ControladorFarmacia {
         this.cadastrarFabricante(fabricante2);
         this.cadastrarFabricante(fabricante3);
 
+        Fornecedor fornecedor1 = new Fornecedor("Lucas", "(21)2222-3333", "lucas@ufrrj.br");
+        Fornecedor fornecedor2 = new Fornecedor("Marcos", "(21)22222-3333", "marcos@ufrrj.br");
+
+        fornecedor1.adicionarFabricante(fabricante1);
+        fornecedor1.adicionarFabricante(fabricante2);
+        fornecedor2.adicionarFabricante(fabricante3);
+        this.cadastrarFornecedor(fornecedor1);
+        this.cadastrarFornecedor(fornecedor2);
+        
         Tarja tarja1 = new Tarja("Livre Comercialização", false);
         Tarja tarja2 = new Tarja("Tarja Vermelha sem retenção de receita", false);
         Tarja tarja3 = new Tarja("Tarja Vermelha com retenção de receita", true);

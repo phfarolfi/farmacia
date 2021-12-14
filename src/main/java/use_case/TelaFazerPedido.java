@@ -1,111 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package use_case;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author phfar
- */
 public class TelaFazerPedido extends javax.swing.JFrame {
 
     private ControladorFarmacia controller;
+    private List<Fornecedor> fornecedores;
  
     public TelaFazerPedido(ControladorFarmacia controller) {
         this.controller = controller;
+        this.fornecedores = this.controller.getFornecedores();
+        
         initComponents();
 
-        //teste();
-/*
-        String[] fornecedoresNome = new String[fornecedores.size()+1];
+        String[] fornecedoresNome = new String[this.fornecedores.size()+1];
         fornecedoresNome[0] = "Escolha o fornecedor...";
-        for(int i = 0; i < fornecedores.size(); i++) {
-            fornecedoresNome[i+1] = fornecedores.get(i).getNome();
+        for(int i = 0; i < this.fornecedores.size(); i++) {
+            fornecedoresNome[i+1] = this.fornecedores.get(i).getNome();
         }
         campoFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(fornecedoresNome));
         campoProdutoSelecionado.setEditable(false);
-*/ 
    }
-
-    public void teste(){
-        categorias = new ArrayList<CategoriaProduto>();
-    	categoria1 = new CategoriaProduto("Medicamentos", "Descrição de Categoria de Produto 1");        
-        categoria2 = new CategoriaProduto("Higiene e Cuidados Pessoais", "Descrição de Categoria de Produto 2");
-        categoria3 = new CategoriaProduto("Saúde e Bem-estar", "Descrição de Categoria de Produto 3");
-        categoria4 = new CategoriaProduto("Beleza e Dermocosméticos", "Descrição de Categoria de Produto 4");
-        categoria5 = new CategoriaProduto("Conveniência", "Descrição de Categoria de Produto 5");
-        categoria6 = new CategoriaProduto("Mundo Infantil", "Descrição de Categoria de Produto 6");
-        categoria7 = new CategoriaProduto("Outros", "Descrição de Categoria de Produto 7");
-        categorias.add(categoria1);
-        categorias.add(categoria2);
-        categorias.add(categoria3);
-        categorias.add(categoria4);
-        categorias.add(categoria5);
-        categorias.add(categoria6);
-        categorias.add(categoria7);
-        
-        fabricantes = new ArrayList<Fabricante>();
-        fabricante1 = new Fabricante("Sanofi");
-        fabricante2 = new Fabricante("EMS");
-        fabricante3 = new Fabricante("Braida");
-        fabricantes.add(fabricante1);
-        fabricantes.add(fabricante2);
-        fabricantes.add(fabricante3);
-        
-        tarjas = new ArrayList<Tarja>();
-        tarja1 = new Tarja("Livre Comercialização", false);
-        tarja2 = new Tarja("Tarja Vermelha sem retenção de receita", false);
-        tarja3 = new Tarja("Tarja Vermelha com retenção de receita", true);
-        tarja4 = new Tarja("Tarja Preta", true);
-        tarjas.add(tarja1);
-        tarjas.add(tarja2);
-        tarjas.add(tarja3);
-        tarjas.add(tarja4);
-        
-        principiosAtivos = new ArrayList<PrincipioAtivo>();
-        principioAtivo1 = new PrincipioAtivo("PrincipioAtivo 1");
-        principioAtivo2 = new PrincipioAtivo("PrincipioAtivo 2");
-        principioAtivo3 = new PrincipioAtivo("PrincipioAtivo 3");
-        principioAtivo4 = new PrincipioAtivo("PrincipioAtivo 4");
-        principiosAtivos.add(principioAtivo1);
-        principiosAtivos.add(principioAtivo2);
-        principiosAtivos.add(principioAtivo3);
-        principiosAtivos.add(principioAtivo4);
-        
-        produtos = new ArrayList<Produto>();
-        produto1 = new Produto("Shampoo", "Descrição do produto 1", 13.0, categoria2, fabricante1);  
-        produto2 = new Produto("Repelente", "Descrição do produto 2", 20.50, categoria3, fabricante2); 
-        produto3 = new Produto("Serum Vitamina C", "Descrição do produto 3", 120.99, categoria4, fabricante3); 
-        produto4 = new Produto("Fralda", "Descrição do produto 4", 20.58, categoria6, fabricante1); 
-        produto5 = new Produto("Adoçante", "Descrição do produto 5", 8.50, categoria5, fabricante2); 
-//        med1 = new Medicamento("BraiDorflex", "Remédio para dor", 21.99, categoria1, fabricante1, "Analgésico", tarja1, listaPrincipioAtivo1);;
-//        med2 = new Medicamento("Ivermectina", "Remédio para piolho", 15.00, categoria1, fabricante2, "Tipo 2", tarja2, listaPrincipioAtivo1);
-//        med3 = new Medicamento("Rivotril", "Remédio antidepressivo", 30.00, categoria1, fabricante3, "Antidepressivo", tarja4, listaPrincipioAtivo2);
-//        med4 = new Medicamento("Azitromicina", "Remédio 4", 30.00, categoria1, fabricante3, "Tipo 3", tarja3, listaPrincipioAtivo2);
-        produtos.add(produto1);
-        produtos.add(produto2);
-        produtos.add(produto3);
-        produtos.add(produto4);
-        produtos.add(produto5);
-//        produtos.add(med1);
-//        produtos.add(med2);
-//        produtos.add(med3);
-//        produtos.add(med4);
-
-        fornecedores = new ArrayList<Fornecedor>();
-        fornecedor1 = new Fornecedor("Fornecedor 1", "4992-8922", "@@@@");  
-        fornecedor1.adicionarFabricante(fabricante1);
-        fornecedor1.adicionarFabricante(fabricante2);
-        fornecedor2 = new Fornecedor("Fornecedor 2", "6666-6666", "@@@@");
-        fornecedor2.adicionarFabricante(fabricante3);
-        fornecedores.add(fornecedor1);
-        fornecedores.add(fornecedor2);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -238,6 +155,11 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("FAZER PEDIDO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFazerPedido(evt);
+            }
+        });
 
         botaoAdicionarAoCarrinho.setBackground(new java.awt.Color(255, 49, 79));
         botaoAdicionarAoCarrinho.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -346,10 +268,10 @@ public class TelaFazerPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_campoFornecedorActionPerformed
 
     private Fornecedor buscaFornecedor(String fornecedor) {
-        for(int i = 0; i < fornecedores.size(); i++)
+        for(int i = 0; i < this.fornecedores.size(); i++)
         {
-            if(fornecedores.get(i).getNome() == fornecedor) {
-                return fornecedores.get(i);
+            if(this.fornecedores.get(i).getNome() == fornecedor) {
+                return this.fornecedores.get(i);
             }
         }
         return null;
@@ -382,6 +304,11 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoAdicionarAoCarrinhoActionPerformed
 
+    private void botaoFazerPedido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFazerPedido
+        // TODO add your handling code here:
+        this.controller.iniciarTelaInicial();
+    }//GEN-LAST:event_botaoFazerPedido
+
     private void limpaCampos() {
         campoProdutoSelecionado.setText("");
         campoQuantidade.setValue(0);
@@ -389,47 +316,6 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         model.setRowCount(0);
     }
 
-    List<CategoriaProduto> categorias;
-    CategoriaProduto categoria1;
-    CategoriaProduto categoria2;
-    CategoriaProduto categoria3;
-    CategoriaProduto categoria4;
-    CategoriaProduto categoria5;
-    CategoriaProduto categoria6;
-    CategoriaProduto categoria7;
-    
-    List<Fabricante> fabricantes;
-    Fabricante fabricante1;
-    Fabricante fabricante2;
-    Fabricante fabricante3;
-    
-    List<Tarja> tarjas;
-    Tarja tarja1;
-    Tarja tarja2;
-    Tarja tarja3;
-    Tarja tarja4;
-    
-    List<PrincipioAtivo> principiosAtivos;
-    PrincipioAtivo principioAtivo1;
-    PrincipioAtivo principioAtivo2;
-    PrincipioAtivo principioAtivo3;
-    PrincipioAtivo principioAtivo4;
-    
-    List<Produto> produtos;
-    Produto produto1;
-    Produto produto2;
-    Produto produto3;
-    Produto produto4;
-    Produto produto5;
-    
-    Medicamento med1;
-    Medicamento med2;
-    Medicamento med3;
-    Medicamento med4;
-
-    List<Fornecedor> fornecedores;
-    Fornecedor fornecedor1;
-    Fornecedor fornecedor2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarAoCarrinho;
     private javax.swing.JButton botaoRemoverItensSelecionados;
