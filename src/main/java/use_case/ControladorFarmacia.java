@@ -2,48 +2,50 @@ package use_case;
 import java.util.*;
 
 public class ControladorFarmacia {
-    private List<Produto> estoque;
-    private List<Funcionario> funcionarios;
-    private List<ItemEstoque> itensEstoque;
+    private List<Produto> produtos;
+    //private List<Funcionario> funcionarios;
+    //private List<ItemEstoque> itensEstoque;
     private List<PrincipioAtivo> principiosAtivo;
     private List<Tarja> tarjas;
     private List<CategoriaProduto> categorias;
     private List<Fabricante> fabricantes;
     
-    ControladorFarmacia(){
-        this.estoque = new ArrayList<Produto>();
-        this.funcionarios = new ArrayList<Funcionario>();
-        this.itensEstoque = new ArrayList<ItemEstoque>();
+    private javax.swing.JFrame view;
+
+    public ControladorFarmacia(){
+        this.produtos = new ArrayList<Produto>();
+        //this.funcionarios = new ArrayList<Funcionario>();
+        //this.itensEstoque = new ArrayList<ItemEstoque>();
         this.principiosAtivo = new ArrayList<PrincipioAtivo>();
         this.tarjas = new ArrayList<Tarja>();
         this.categorias = new ArrayList<CategoriaProduto>();
         this.fabricantes = new ArrayList<Fabricante>();
+        teste();
+        this.view = new TelaInicial(this);
     }
     
     //Principio aberto-fechado. Se receber os dados terá mais tratamento do que receber produto
     public void cadastrarProduto(Produto produto){        
-        this.estoque.add(produto);
-        
-        System.out.println(this.estoque);
+        this.produtos.add(produto);
+        //System.out.println(this.produtos);
     }
     
-    public List<Produto> getEstoque(){
-        return this.estoque;
+    public List<Produto> getProdutos(){
+        return this.produtos;
     }
     
     public void cadastrarCategoriaProduto(CategoriaProduto categoria){        
-        this.categorias.add(categoria);
-        
-        //System.out.println(this.estoque);
+        this.categorias.add(categoria); 
+        //System.out.println(this.produtos);
     }
     
     public List<CategoriaProduto> getCategoriasProduto(){
+        //System.out.println(this.categorias.size());
         return this.categorias;
     }
     
     public void cadastrarTarja(Tarja tarja){        
         this.tarjas.add(tarja);
-        
         //System.out.println(this.tarjas);
     }
     
@@ -53,18 +55,16 @@ public class ControladorFarmacia {
     
     public void cadastrarFabricante(Fabricante fabricante){        
         this.fabricantes.add(fabricante);
-        
-        //System.out.println(this.estoque);
+        //System.out.println(this.produtos);
     }
     
-    public List<Fabricante> getFrabricantes(){
+    public List<Fabricante> getFabricantes(){
         return this.fabricantes;
     }
     
     public void cadastrarPrincipioAtivo(PrincipioAtivo principioAtivo){        
-        this.principiosAtivo.add(principioAtivo);
-        
-        //System.out.println(this.estoque);
+        this.principiosAtivo.add(principioAtivo);  
+        //System.out.println(this.produtos);
     }
     
     public List<PrincipioAtivo> getPrincipiosAtivos(){
@@ -115,35 +115,85 @@ public class ControladorFarmacia {
         this.cadastrarPrincipioAtivo(principioAtivo3);
         this.cadastrarPrincipioAtivo(principioAtivo4);
         
-        
+        List<ItemPrincipioAtivo> listaPrincipioAtivo1 = new ArrayList<ItemPrincipioAtivo>();
+        listaPrincipioAtivo1.add(new ItemPrincipioAtivo(principioAtivo1, 100));
+        listaPrincipioAtivo1.add(new ItemPrincipioAtivo(principioAtivo2, 200));
+
         Produto produto1 = new Produto("Shampoo", "Descrição do produto 1", 13.0, categoria2, fabricante3);  
         Produto produto2 = new Produto("Repelente", "Descrição do produto 2", 20.50, categoria3, fabricante3); 
         Produto produto3 = new Produto("Serum Vitamina C", "Descrição do produto 3", 120.99, categoria4, fabricante3); 
         Produto produto4 = new Produto("Fralda", "Descrição do produto 4", 20.58, categoria6, fabricante3); 
         Produto produto5 = new Produto("Adoçante", "Descrição do produto 5", 8.50, categoria5, fabricante3); 
-//        med1 = new Medicamento("BraiDorflex", "Remédio para dor", 21.99, categoria1, fabricante1, "Analgésico", tarja1, listaPrincipioAtivo1);;
-//        med2 = new Medicamento("Ivermectina", "Remédio para piolho", 15.00, categoria1, fabricante2, "Tipo 2", tarja2, listaPrincipioAtivo1);
-//        med3 = new Medicamento("Rivotril", "Remédio antidepressivo", 30.00, categoria1, fabricante3, "Antidepressivo", tarja4, listaPrincipioAtivo2);
-//        med4 = new Medicamento("Azitromicina", "Remédio 4", 30.00, categoria1, fabricante3, "Tipo 3", tarja3, listaPrincipioAtivo2);
+        Medicamento med1 = new Medicamento("BraiDorflex", "Remédio para dor", 21.99, categoria1, fabricante1, tarja1, listaPrincipioAtivo1);;
+        Medicamento med2 = new Medicamento("Ivermectina", "Remédio para piolho", 15.00, categoria1, fabricante2, tarja2, listaPrincipioAtivo1);
+        Medicamento med3 = new Medicamento("Rivotril", "Remédio antidepressivo", 30.00, categoria1, fabricante3, tarja4, listaPrincipioAtivo1);
+        Medicamento med4 = new Medicamento("Azitromicina", "Remédio 4", 30.00, categoria1, fabricante3, tarja3, listaPrincipioAtivo1);
         this.cadastrarProduto(produto1);
         this.cadastrarProduto(produto2);
         this.cadastrarProduto(produto3);
         this.cadastrarProduto(produto4);
         this.cadastrarProduto(produto5);
-//        produtos.add(med1);
-//        produtos.add(med2);
-//        produtos.add(med3);
-//        produtos.add(med4);
+        produtos.add(med1);
+        produtos.add(med2);
+        produtos.add(med3);
+        produtos.add(med4);
     }
     
+    public void iniciarTelaInicial() {
+        javax.swing.JFrame viewAntiga = view;
+        view = new TelaInicial(this);
+        this.run();
+        viewAntiga.dispose();
+    }
+
+    public void iniciarTelaVenda() {
+        javax.swing.JFrame viewAntiga = view;
+        view = new TelaVenda(this);
+        this.run();
+        viewAntiga.dispose();
+        //...
+    }
+
+    public void iniciarTelaFazerPagamento() {
+        javax.swing.JFrame viewAntiga = view;
+        viewAntiga.setVisible(false);
+        view = new TelaFazerPagamento((TelaVenda)viewAntiga, this);
+        this.run();
+        view.setAlwaysOnTop(true);
+        //viewAntiga.dispose();
+    }
+
+    public void iniciarTelaCadastrarProduto() {
+        //...
+        javax.swing.JFrame viewAntiga = view;
+        view = new TelaCadastrarProduto(this);
+        this.run();
+        viewAntiga.dispose();
+    }
+
+    public void iniciarTelaFazerPedido() {
+        //...
+        javax.swing.JFrame viewAntiga = view;
+        view = new TelaFazerPedido(this);
+        this.run();
+        viewAntiga.dispose();
+    }
+
+    public void iniciarTelaEstoque() {
+        javax.swing.JFrame viewAntiga = view;
+        view = new TelaEstoque(this);
+        this.run();
+        viewAntiga.dispose();
+        //...
+    }
+
+    public void setView(javax.swing.JFrame view) {
+        this.view = view;
+    }
+
     public void run(){
-        this.teste();        
-             
-        TelaInicial.iniciar_tela(this);
-    }
-    
-    public static void main(String args[]){
-        ControladorFarmacia farmacia = new ControladorFarmacia();
-        farmacia.run();
+        view.setSize(1280,751);
+        view.setVisible(true);
+        // TelaInicial.iniciar_tela(this);
     }
 }

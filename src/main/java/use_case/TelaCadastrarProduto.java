@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author phfar
  */
 public class TelaCadastrarProduto extends javax.swing.JFrame {
-    ControladorFarmacia controller;
+    private ControladorFarmacia controller;
     /**
      * Creates new form TelaCadastrarProduto
      */
@@ -42,7 +42,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         campoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(categoriasNome));
         
         //Adicionando Fabricantes cadastrados no ComboBox
-        fabricantes = this.controller.getFrabricantes();        
+        fabricantes = this.controller.getFabricantes();        
         String[] fabricantesNome = new String[fabricantes.size()+1];
         fabricantesNome[0] = "Escolha o fabricante...";
         
@@ -402,8 +402,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     }
     
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        TelaInicial.iniciar_tela(this.controller);
-        this.dispose();
+        this.controller.iniciarTelaInicial();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoAdicionarProdutoAoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoAoEstoqueActionPerformed
@@ -416,8 +415,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
                 produtos.add(med);
                 System.out.println(((Medicamento)produtos.get(produtos.size()-1)).getItemPrincipioAtivo().size());
                 
-                TelaInicial.iniciar_tela(this.controller);
-                this.dispose();               
+                this.controller.iniciarTelaInicial();
             }
         }
         else {
@@ -427,8 +425,8 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
                 produtos.add(prod);
                 System.out.println(produtos.get(produtos.size()-1).getNome());
                 
-                TelaInicial.iniciar_tela(this.controller);
-                this.dispose();
+                this.controller.iniciarTelaInicial();
+
             }
         }
     }//GEN-LAST:event_botaoAdicionarProdutoAoEstoqueActionPerformed
@@ -538,41 +536,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoFabricanteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void iniciar_tela(ControladorFarmacia controller) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastrarProduto(controller).setVisible(true);
-            }
-        });
-    }
-    
     List<CategoriaProduto> categorias;    
     List<Fabricante> fabricantes;
     List<Tarja> tarjas;    

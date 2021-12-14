@@ -31,8 +31,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
         botaoVenda = new javax.swing.JButton();
         botaoCadastrarProduto = new javax.swing.JButton();
-        botaoAlterarProduto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botaoFazerPedido = new javax.swing.JButton();
+        botaoEstoque = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial");
@@ -66,22 +66,22 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        botaoAlterarProduto.setBackground(new java.awt.Color(0, 0, 51));
-        botaoAlterarProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        botaoAlterarProduto.setForeground(new java.awt.Color(255, 49, 79));
-        botaoAlterarProduto.setText("FAZER PEDIDO");
-        botaoAlterarProduto.setToolTipText("Alterar informações de um produto");
-        botaoAlterarProduto.setPreferredSize(new java.awt.Dimension(250, 250));
-        botaoAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
+        botaoFazerPedido.setBackground(new java.awt.Color(0, 0, 51));
+        botaoFazerPedido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        botaoFazerPedido.setForeground(new java.awt.Color(255, 49, 79));
+        botaoFazerPedido.setText("FAZER PEDIDO");
+        botaoFazerPedido.setToolTipText("Alterar informações de um produto");
+        botaoFazerPedido.setPreferredSize(new java.awt.Dimension(250, 250));
+        botaoFazerPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoAlterarProdutoActionPerformed(evt);
+                botaoFazerPedidoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Estoque");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoEstoque.setText("Estoque");
+        botaoEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoEstoqueActionPerformed(evt);
             }
         });
 
@@ -92,12 +92,12 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(367, 367, 367)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(157, 157, 157)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(529, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,8 +109,8 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoAlterarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(600, Short.MAX_VALUE))
         );
 
@@ -118,41 +118,25 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVendaActionPerformed
-        TelaVenda venda = new TelaVenda();
-        venda.setVisible(true);
-        this.dispose();
+        this.controller.iniciarTelaVenda();
     }//GEN-LAST:event_botaoVendaActionPerformed
 
     private void botaoCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarProdutoActionPerformed
-        TelaCadastrarProduto.iniciar_tela(this.controller);
-        this.dispose();
+        this.controller.iniciarTelaCadastrarProduto();
     }//GEN-LAST:event_botaoCadastrarProdutoActionPerformed
 
-    private void botaoAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarProdutoActionPerformed
-        TelaFazerPedido telaFazerPedido = new TelaFazerPedido();
-        telaFazerPedido.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_botaoAlterarProdutoActionPerformed
+    private void botaoFazerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFazerPedidoActionPerformed
+        this.controller.iniciarTelaFazerPedido();
+    }//GEN-LAST:event_botaoFazerPedidoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaEstoque.iniciar_tela(this.controller);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    public static void iniciar_tela(ControladorFarmacia controller) {       
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaInicial(controller).setVisible(true);
-            }
-        });
-    }
-
+    private void botaoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEstoqueActionPerformed
+        this.controller.iniciarTelaEstoque();
+    }//GEN-LAST:event_botaoEstoqueActionPerformed
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoAlterarProduto;
     private javax.swing.JButton botaoCadastrarProduto;
+    private javax.swing.JButton botaoEstoque;
+    private javax.swing.JButton botaoFazerPedido;
     private javax.swing.JButton botaoVenda;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

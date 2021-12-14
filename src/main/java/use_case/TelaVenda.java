@@ -9,8 +9,10 @@ import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaVenda extends javax.swing.JFrame {
+    private ControladorFarmacia controller;
 
-    public TelaVenda() {
+    public TelaVenda(ControladorFarmacia controller) {
+        this.controller = controller;
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         teste();        
         initComponents();
@@ -409,19 +411,15 @@ public void teste(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        TelaInicial telaInicial= new TelaInicial();
-        telaInicial.setVisible(true);
-        this.dispose();
+        this.controller.iniciarTelaInicial();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoFazerPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFazerPagamentoActionPerformed
         campoValorTotalDaCompra.getText();
 
         if(!"0.00".equals(campoValorTotalDaCompra.getText())) {
-            TelaFazerPagamento telaFazerPagamento = new TelaFazerPagamento(this);
-            telaFazerPagamento.setVisible(true);
-            telaFazerPagamento.setAlwaysOnTop(true);
-            this.setVisible(false);
+            this.controller.iniciarTelaFazerPagamento();
+            //telaFazerPagamento.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_botaoFazerPagamentoActionPerformed
 
@@ -521,20 +519,16 @@ public void teste(){
     /**
      * @param args the command line arguments
      */
+    
+    /*
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /* Create and display the form */
-       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVenda().setVisible(true);
+                new TelaVenda(this).setVisible(true);
             }
         });
     }
+    */
     
     // TESTE
     CategoriaProduto categoria1;

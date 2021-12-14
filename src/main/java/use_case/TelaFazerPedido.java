@@ -14,13 +14,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaFazerPedido extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaFazerPedido
-     */
-    public TelaFazerPedido() {
+    private ControladorFarmacia controller;
+ 
+    public TelaFazerPedido(ControladorFarmacia controller) {
+        this.controller = controller;
         initComponents();
-        teste();
 
+        //teste();
+/*
         String[] fornecedoresNome = new String[fornecedores.size()+1];
         fornecedoresNome[0] = "Escolha o fornecedor...";
         for(int i = 0; i < fornecedores.size(); i++) {
@@ -28,7 +29,8 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         }
         campoFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(fornecedoresNome));
         campoProdutoSelecionado.setEditable(false);
-    }
+*/ 
+   }
 
     public void teste(){
         categorias = new ArrayList<CategoriaProduto>();
@@ -323,9 +325,7 @@ public class TelaFazerPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        TelaInicial telaInicial= new TelaInicial();
-        telaInicial.setVisible(true);
-        this.dispose();
+        this.controller.iniciarTelaInicial();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void campoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFornecedorActionPerformed
@@ -388,42 +388,6 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tabelaProdutosSelecionados.getModel();
         model.setRowCount(0);
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaFazerPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaFazerPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaFazerPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaFazerPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaFazerPedido().setVisible(true);
-            }
-        });
-    }
-
 
     List<CategoriaProduto> categorias;
     CategoriaProduto categoria1;
