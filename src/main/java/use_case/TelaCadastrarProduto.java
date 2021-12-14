@@ -146,10 +146,20 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         labelCategoria.setText("CATEGORIA");
 
         labelPrecoDeVenda.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        labelPrecoDeVenda.setText("PREÇO DE VENDA");
+        labelPrecoDeVenda.setText("PREÇO DE VENDA (R$)");
 
         campoPrecoDeVenda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoPrecoDeVenda.setText("0.00");
+        campoPrecoDeVenda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoPrecoDeVendaFocusLost(evt);
+            }
+        });
+        campoPrecoDeVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoPrecoDeVendaMouseClicked(evt);
+            }
+        });
 
         campoCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha a categoria...", "Higiene Pessoal", "Medicamento", "Alimentos", "Vestimenta", "Artigos Pessoais" }));
@@ -162,11 +172,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         campoPrincipioAtivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoPrincipioAtivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha o(s) princípio(s) ativo(s)...", "Item 1", "Item 2", "Item 3", "Item 4" }));
         campoPrincipioAtivo.setLightWeightPopupEnabled(false);
-        campoPrincipioAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPrincipioAtivoActionPerformed(evt);
-            }
-        });
 
         labelDose.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelDose.setText("DOSE (mg)");
@@ -186,7 +191,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(campoDescricao);
 
         campoQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        campoQuantidade.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        campoQuantidade.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         labelPrincipioAtivo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelPrincipioAtivo.setText("PRINCÍPIO(S) ATIVO(S)");
@@ -258,12 +263,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         botaoAdicionarPrincipioAtivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarPrincipioAtivoActionPerformed(evt);
-            }
-        });
-
-        campoFabricante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFabricanteActionPerformed(evt);
             }
         });
 
@@ -486,32 +485,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         return listaItemPrincipiosAtivos;
     }
     
-    private void campoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCategoriaActionPerformed
-        if(campoCategoria.getSelectedItem() == "Medicamentos") {
-            labelPrincipioAtivo.setVisible(true);
-            campoPrincipioAtivo.setVisible(true);
-            labelDose.setVisible(true);
-            campoDose.setVisible(true);
-            labelTarja.setVisible(true);
-            campoTarja.setVisible(true);
-            painelTabela.setVisible(true);
-            botaoAdicionarPrincipioAtivo.setVisible(true);
-        } else {
-            labelPrincipioAtivo.setVisible(false);
-            campoPrincipioAtivo.setVisible(false);
-            labelDose.setVisible(false);
-            campoDose.setVisible(false);
-            labelTarja.setVisible(false);
-            campoTarja.setVisible(false);
-            painelTabela.setVisible(false);
-            botaoAdicionarPrincipioAtivo.setVisible(false);
-        }
-    }//GEN-LAST:event_campoCategoriaActionPerformed
-
-    private void campoPrincipioAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrincipioAtivoActionPerformed
-
-    }//GEN-LAST:event_campoPrincipioAtivoActionPerformed
-
     private void botaoAdicionarPrincipioAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarPrincipioAtivoActionPerformed
         Object item = campoPrincipioAtivo.getSelectedItem();
         
@@ -537,10 +510,56 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoRemoverPrincipiosAtivosActionPerformed
 
-    private void campoFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFabricanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoFabricanteActionPerformed
+    private void campoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCategoriaActionPerformed
+        limpaCampos();
+        if(campoCategoria.getSelectedItem() == "Medicamentos") {
+            labelPrincipioAtivo.setVisible(true);
+            campoPrincipioAtivo.setVisible(true);
+            labelDose.setVisible(true);
+            campoDose.setVisible(true);
+            labelTarja.setVisible(true);
+            campoTarja.setVisible(true);
+            painelTabela.setVisible(true);
+            botaoAdicionarPrincipioAtivo.setVisible(true);
+        } else {
+            labelPrincipioAtivo.setVisible(false);
+            campoPrincipioAtivo.setVisible(false);
+            labelDose.setVisible(false);
+            campoDose.setVisible(false);
+            labelTarja.setVisible(false);
+            campoTarja.setVisible(false);
+            painelTabela.setVisible(false);
+            botaoAdicionarPrincipioAtivo.setVisible(false);
+        }
+    }//GEN-LAST:event_campoCategoriaActionPerformed
 
+    private void campoPrecoDeVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoPrecoDeVendaMouseClicked
+        if("0.00".equals(campoPrecoDeVenda.getText())){
+            campoPrecoDeVenda.setText("");
+        }
+    }//GEN-LAST:event_campoPrecoDeVendaMouseClicked
+
+    private void campoPrecoDeVendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPrecoDeVendaFocusLost
+        if("".equals(campoPrecoDeVenda.getText())) {
+            campoPrecoDeVenda.setText("0.00");
+        }
+    }//GEN-LAST:event_campoPrecoDeVendaFocusLost
+    
+    private void limpaCampos() {
+        campoNome.setText("");
+        campoFabricante.setSelectedIndex(0);
+        campoDescricao.setText("");
+        campoQuantidade.setValue(1);
+        campoPrecoDeVenda.setText("0.00");
+        campoPrincipioAtivo.setSelectedIndex(0);
+        campoDose.setText("");
+        campoTarja.setSelectedIndex(0);
+        
+        DefaultTableModel model = (DefaultTableModel) tabelaPrincipiosAtivos.getModel();
+        for(int i=0;i<tabelaPrincipiosAtivos.getRowCount();i++){
+            model.removeRow(i);
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarPrincipioAtivo;
