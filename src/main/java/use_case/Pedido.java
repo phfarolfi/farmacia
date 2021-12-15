@@ -56,16 +56,9 @@ public class Pedido{
         }
     }
 
-    public boolean validarPedido(){
-        if(this.itemPedido.size() > 0)
-            return true;
-        return false;
-    }
-
     public void finalizarPedidoFeito(){
-        if(this.validarPedido()){
+        if(this.itemPedido.size() > 0)
             this.pedidoFeito = true;
-        }
     }
 
     public void finalizarPedidoEntregue(){

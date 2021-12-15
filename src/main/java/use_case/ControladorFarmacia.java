@@ -283,6 +283,7 @@ public class ControladorFarmacia {
             pedido.criarItemPedido(buscaProduto((String)tabelaProdutos.getValueAt(i,0)),(int)tabelaProdutos.getValueAt(i,1));
         }
         
+        pedido.finalizarPedidoFeito();
         this.pedidos.add(pedido);
         //System.out.println(this.pedidos.size());
     }
