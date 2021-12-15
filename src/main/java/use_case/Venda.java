@@ -9,23 +9,19 @@ public class Venda {
     private boolean estaCompleta;
     private Pagamento pagamento;
     private List<ItemVenda> itemVenda;
-//    private List<Receita> receita;
-//    private Funcionario funcionario;
+    //    private List<Receita> receita;
+    //    private Funcionario funcionario;
 
     public Venda() {
         this.data = new Date();
         this.estaCompleta = false;
         this.itemVenda = new ArrayList<ItemVenda>();
-//        this.receita = new ArrayList<Receita>();   
-//        this.funcionario = funcionario;
+        // this.receita = new ArrayList<Receita>();   
+        // this.funcionario = funcionario;
     }
-
-    public Date getData() {
-        return this.data;
-    }
-
-    private void setData(Date data) {
-        this.data = data;
+    
+    public List<ItemVenda> getItemVenda() {
+        return this.itemVenda;
     }
 
     public void setEstaCompleta(boolean estaCompleta) {
