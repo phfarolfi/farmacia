@@ -18,4 +18,8 @@ public class ItemVenda {
     public Produto getProduto() {
         return this.produto;
     }
+    
+    public int getQuantidade() {
+        return this.quantidade;
+    }
 }

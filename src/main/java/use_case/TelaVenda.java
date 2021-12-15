@@ -6,17 +6,20 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaVenda extends javax.swing.JFrame {
     private ControladorFarmacia controller;
     private List<Produto> produtos;
+    private List<ItemEstoque> itensEstoque;
     private double valorTotal = 0.0;
     private DecimalFormat df;
 
     public TelaVenda(ControladorFarmacia controller) {
         this.controller = controller;
         this.produtos = this.controller.getProdutos();
+        this.itensEstoque = this.controller.getItemEstoque();
         this.df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH));    
         
         initComponents(); 
@@ -206,6 +209,11 @@ public class TelaVenda extends javax.swing.JFrame {
         scrollTabela.setViewportView(tabelaDeProdutos);
 
         campoNome.setEditable(false);
+        campoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNomeActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setLabelFor(campoNome);
@@ -388,11 +396,14 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoRemoverItensActionPerformed
 
     private void botaoAdicionarAoCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarAoCarrinhoActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tabelaDeProdutos.getModel();
-        model.addRow(new Object[]{campoCodigo.getText(), campoNome.getText(), Double.parseDouble(campoPrecoUnitario.getText()), (int)campoQuantidade.getValue(), false});
-        valorTotal += Double.parseDouble(campoPrecoUnitario.getText()) * (int)campoQuantidade.getValue();
-        campoValorTotalDaCompra.setText(df.format(valorTotal));
-        limpaCampos();
+        if((int)campoQuantidade.getValue() > 0) {
+            DefaultTableModel model = (DefaultTableModel) tabelaDeProdutos.getModel();
+            model.addRow(new Object[]{campoCodigo.getText(), campoNome.getText(), Double.parseDouble(campoPrecoUnitario.getText()), (int)campoQuantidade.getValue(), false});
+            valorTotal += Double.parseDouble(campoPrecoUnitario.getText()) * (int)campoQuantidade.getValue();
+            campoValorTotalDaCompra.setText(df.format(valorTotal));
+            limpaCampos();
+        }
+        
     }//GEN-LAST:event_botaoAdicionarAoCarrinhoActionPerformed
 
     private void campoCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoKeyPressed
@@ -404,13 +415,16 @@ public class TelaVenda extends javax.swing.JFrame {
                 codigo = Integer.parseInt(campoCodigo.getText());
                 int i;
                 for(i=0; i<this.produtos.size();i++){
-                    if(codigo == this.produtos.get(i).getCodigo()){
+                    if(codigo == this.produtos.get(i).getCodigo()) {
                         campoNome.setText(this.produtos.get(i).getNome());
                         campoCategoria.setText(this.produtos.get(i).getCategoria().getNome());
                         String valor = df.format(this.produtos.get(i).getPreco());
                         //System.out.println(df.format(valor));
                         campoPrecoUnitario.setText(valor);
                         campoPrecoTotal.setText(valor);
+                       
+                        //System.out.println((int)tabelaDeProdutos.getRowCount());
+                        campoQuantidade.setModel(new SpinnerNumberModel(0, 0, this.buscaItemEstoque(codigo).getQuantidade()- quantidadeCarrinho(codigo), 1));
                         campoQuantidade.setEnabled(true);
                         campoCodigo.setEnabled(false);
                         erroCodigo.setVisible(false);
@@ -419,14 +433,35 @@ public class TelaVenda extends javax.swing.JFrame {
                     }
                 }
                 if(i==this.produtos.size())
-                erroCodigo.setVisible(true);
+                    erroCodigo.setVisible(true);
             }
             catch(RuntimeException error){
                 erroCodigo.setVisible(true);
             }
         }
     }//GEN-LAST:event_campoCodigoKeyPressed
-
+    
+    private int quantidadeCarrinho(int codigoProduto) {
+        int quantidade = 0;
+        for(int i = 0; i < tabelaDeProdutos.getRowCount(); i++) {
+            if(codigoProduto == Integer.parseInt((String) tabelaDeProdutos.getValueAt(i,0))) {
+               quantidade += (int) tabelaDeProdutos.getValueAt(i,3);
+            }
+        }
+        
+        return quantidade;
+    }
+    
+     private ItemEstoque buscaItemEstoque(int codigoProduto) {
+        for(int i = 0; i < this.itensEstoque.size(); i++)
+        {
+            if(this.itensEstoque.get(i).getProduto().getCodigo() == codigoProduto) {
+                return this.itensEstoque.get(i);
+            }
+        }
+        return null;
+    }
+    
     private void campoQuantidadeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_campoQuantidadeStateChanged
         // TODO add your handling code here:
         String valorTotal1 = df.format((int)campoQuantidade.getValue() * Double.parseDouble(campoPrecoUnitario.getText()));
@@ -449,6 +484,10 @@ public class TelaVenda extends javax.swing.JFrame {
     private void campoValorTotalDaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorTotalDaCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoValorTotalDaCompraActionPerformed
+
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeActionPerformed
 
     private void limpaCampos() {
         botaoLimpar.setEnabled(false);

@@ -213,6 +213,16 @@ public class ControladorFarmacia {
         return null;
     }
     
+    private ItemEstoque buscaItemEstoque(int codigoProduto) {
+        for(int i = 0; i < this.itensEstoque.size(); i++)
+        {
+            if(this.itensEstoque.get(i).getProduto().getCodigo() == codigoProduto) {
+                return this.itensEstoque.get(i);
+            }
+        }
+        return null;
+    }
+    
     public void fazerVendaDinheiro(javax.swing.JTable tabelaProdutos, double valor) {
 //        List<ItemVenda> itemVenda = new ArrayList<ItemVenda>();
         Venda venda = new Venda();
@@ -222,8 +232,11 @@ public class ControladorFarmacia {
         }
         
         venda.realizarPagamento(new Dinheiro(valor, valor));
+        venda.setEstaCompleta(true);
         this.vendas.add(venda);
+        this.diminuirEstoque(venda);
         //System.out.println(this.vendas.size());
+        
     }
     
     public void fazerVendaCartaoCredito(javax.swing.JTable tabelaProdutos, double valor, String numeroCartao, String validade, String nome, int parcelas) {
@@ -234,7 +247,9 @@ public class ControladorFarmacia {
         }
 
         venda.realizarPagamento(new CartaoCredito(valor, numeroCartao, parcelas, nome, validade));
+        venda.setEstaCompleta(true);
         this.vendas.add(venda);
+        this.diminuirEstoque(venda);
         //System.out.println(this.vendas.size());
 
     }
@@ -247,8 +262,18 @@ public class ControladorFarmacia {
         }
 
         venda.realizarPagamento(new CartaoDebito(valor, numeroCartao, nome, validade));
+        venda.setEstaCompleta(true);
         this.vendas.add(venda);   
+        this.diminuirEstoque(venda);
         //System.out.println(this.vendas.size());
+    }
+
+    public void diminuirEstoque(Venda venda) {
+        List<ItemVenda> itemVenda = venda.getItemVenda(); 
+        for(int i=0; i<itemVenda.size(); i++) {
+            ItemEstoque itemEstoque = buscaItemEstoque(itemVenda.get(i).getProduto().getCodigo());
+            itemEstoque.diminuirQuantidade(itemVenda.get(i).getQuantidade());
+        }
     }
     
     public void fazerPedido(javax.swing.JTable tabelaProdutos, Fornecedor fornecedor) {
