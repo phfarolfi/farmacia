@@ -4,24 +4,28 @@ import java.util.*;
 public class ControladorFarmacia {
     private List<Produto> produtos;
     //private List<Funcionario> funcionarios;
-    //private List<ItemEstoque> itensEstoque;
+    private List<ItemEstoque> itensEstoque;
     private List<PrincipioAtivo> principiosAtivo;
     private List<Tarja> tarjas;
     private List<CategoriaProduto> categorias;
     private List<Fabricante> fabricantes;
     private List<Fornecedor> fornecedores;
-
+    private List<Venda> vendas;
+    private List<Pedido> pedidos;
+    
     private javax.swing.JFrame view;
 
     public ControladorFarmacia(){
         this.produtos = new ArrayList<Produto>();
         //this.funcionarios = new ArrayList<Funcionario>();
-        //this.itensEstoque = new ArrayList<ItemEstoque>();
+        this.itensEstoque = new ArrayList<ItemEstoque>();
         this.principiosAtivo = new ArrayList<PrincipioAtivo>();
         this.tarjas = new ArrayList<Tarja>();
         this.categorias = new ArrayList<CategoriaProduto>();
         this.fabricantes = new ArrayList<Fabricante>();
         this.fornecedores = new ArrayList<Fornecedor>();
+        this.vendas = new ArrayList<Venda>();
+        this.pedidos = new ArrayList<Pedido>();
         teste();
         this.view = new TelaInicial(this);
     }
@@ -80,6 +84,35 @@ public class ControladorFarmacia {
     
     public List<Fornecedor> getFornecedores(){
         return this.fornecedores;
+    }
+    
+    public void cadastrarItemEstoque(ItemEstoque itemEstoque){        
+        this.itensEstoque.add(itemEstoque);  
+        //System.out.println(this.fornecedores);
+    }
+    
+    public List<ItemEstoque> getItemEstoque(){
+        return this.itensEstoque;
+    }
+    
+    private List<ItemPrincipioAtivo> criarListaItemPrincipioAtivo(javax.swing.JTable tabelaPrincipiosAtivos) {
+        List<ItemPrincipioAtivo> listaItemPrincipiosAtivos = new ArrayList<ItemPrincipioAtivo>();
+        
+        for(int i=0;i < tabelaPrincipiosAtivos.getRowCount();i++){
+            ItemPrincipioAtivo itemPA = new ItemPrincipioAtivo(buscaPrincipioAtivo((String)tabelaPrincipiosAtivos.getValueAt(i,0)), (double)tabelaPrincipiosAtivos.getValueAt(i,1));
+            listaItemPrincipiosAtivos.add(itemPA);
+        }
+        return listaItemPrincipiosAtivos;
+    }
+    
+    private PrincipioAtivo buscaPrincipioAtivo(String principioAtivo) {
+        for(int i = 0; i < principiosAtivo.size(); i++)
+        {
+            if(principiosAtivo.get(i).getNome().equals(principioAtivo)) {
+                return principiosAtivo.get(i);
+            }
+        }
+        return null;
     }
     
     public void teste(){
@@ -153,10 +186,21 @@ public class ControladorFarmacia {
         this.cadastrarProduto(produto3);
         this.cadastrarProduto(produto4);
         this.cadastrarProduto(produto5);
-        produtos.add(med1);
-        produtos.add(med2);
-        produtos.add(med3);
-        produtos.add(med4);
+        this.cadastrarProduto(med1);
+        this.cadastrarProduto(med2);
+        this.cadastrarProduto(med3);
+        this.cadastrarProduto(med4);
+        
+        this.cadastrarItemEstoque(new ItemEstoque(produto1, 20));
+        this.cadastrarItemEstoque(new ItemEstoque(produto2, 30));
+        this.cadastrarItemEstoque(new ItemEstoque(produto3, 50));
+        this.cadastrarItemEstoque(new ItemEstoque(produto4, 15));
+        this.cadastrarItemEstoque(new ItemEstoque(produto5, 5));
+        this.cadastrarItemEstoque(new ItemEstoque(med1, 12));
+        this.cadastrarItemEstoque(new ItemEstoque(med2, 20));
+        this.cadastrarItemEstoque(new ItemEstoque(med3, 30));
+        this.cadastrarItemEstoque(new ItemEstoque(med4, 15));
+
     }
     
     private Produto buscaProduto(String nomeProduto) {
@@ -178,6 +222,8 @@ public class ControladorFarmacia {
         }
         
         venda.realizarPagamento(new Dinheiro(valor, valor));
+        this.vendas.add(venda);
+        //System.out.println(this.vendas.size());
     }
     
     public void fazerVendaCartaoCredito(javax.swing.JTable tabelaProdutos, double valor, String numeroCartao, String validade, String nome, int parcelas) {
@@ -188,6 +234,9 @@ public class ControladorFarmacia {
         }
 
         venda.realizarPagamento(new CartaoCredito(valor, numeroCartao, parcelas, nome, validade));
+        this.vendas.add(venda);
+        //System.out.println(this.vendas.size());
+
     }
     
     public void fazerVendaCartaoDebito(javax.swing.JTable tabelaProdutos, double valor, String numeroCartao, String validade, String nome) {
@@ -198,8 +247,42 @@ public class ControladorFarmacia {
         }
 
         venda.realizarPagamento(new CartaoDebito(valor, numeroCartao, nome, validade));
+        this.vendas.add(venda);   
+        //System.out.println(this.vendas.size());
     }
     
+    public void fazerPedido(javax.swing.JTable tabelaProdutos, Fornecedor fornecedor) {
+        Pedido pedido = new Pedido(fornecedor);
+        
+        for(int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            pedido.criarItemPedido(buscaProduto((String)tabelaProdutos.getValueAt(i,0)),(int)tabelaProdutos.getValueAt(i,1));
+        }
+        
+        this.pedidos.add(pedido);
+        //System.out.println(this.pedidos.size());
+    }
+    
+    public void cadastrarProduto(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, int quantidade) {
+        Produto produto = new Produto(nome, descricao, preco, categoria, fabricante);
+        ItemEstoque item = new ItemEstoque(produto,quantidade);
+        
+        this.cadastrarProduto(produto);
+        this.cadastrarItemEstoque(item);
+        
+        System.out.println(produtos.size() + " " + itensEstoque.size());
+    }
+    
+    public void cadastrarMedicamento(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, Tarja tarja, javax.swing.JTable tabelaPrincipiosAtivos, int quantidade) {
+        Medicamento med = new Medicamento(nome, descricao, preco, categoria, fabricante, tarja, criarListaItemPrincipioAtivo(tabelaPrincipiosAtivos));
+        ItemEstoque item = new ItemEstoque(med, quantidade);
+        
+        this.cadastrarProduto(med);
+        this.cadastrarItemEstoque(item);
+        
+        System.out.println(produtos.size() + " " + itensEstoque.size());
+    
+    }
+            
     public void iniciarTelaInicial() {
         javax.swing.JFrame viewAntiga = view;
         viewAntiga.dispose();
