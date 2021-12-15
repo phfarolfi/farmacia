@@ -74,11 +74,9 @@
                               <Component id="labelFornecedor" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="labelProdutosSelecionados" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelProdutos" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labelProdutos" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">

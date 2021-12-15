@@ -413,20 +413,13 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     private void botaoAdicionarProdutoAoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoAoEstoqueActionPerformed
         if("Medicamentos".equals(campoCategoria.getSelectedItem())) {
             if(validaCamposProduto() && validaCamposMedicamento()) {
-                //Medicamento(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, Tarja tarja, List<ItemPrincipioAtivo> itemPrincipioAtivo){
-                Medicamento med = new Medicamento(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()), buscaTarja((String)campoTarja.getSelectedItem()), getListaItemPrincipioAtivo() );
-                this.produtos.add(med);
-                System.out.println(((Medicamento)this.produtos.get(this.produtos.size()-1)).getItemPrincipioAtivo().size());
-                
+                this.controller.cadastrarMedicamento(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()), buscaTarja((String)campoTarja.getSelectedItem()), tabelaPrincipiosAtivos,(int) campoQuantidade.getValue());
                 this.controller.iniciarTelaInicial();
             }
         }
         else {
-            if(validaCamposProduto()){
-                Produto prod = new Produto(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()));
-                this.produtos.add(prod);
-                System.out.println(this.produtos.get(this.produtos.size()-1).getNome());
-                
+            if(validaCamposProduto()){  
+                this.controller.cadastrarProduto(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()),(int) campoQuantidade.getValue());
                 this.controller.iniciarTelaInicial();
 
             }
@@ -461,26 +454,6 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
             }
         }
         return null;
-    }
-    
-    private PrincipioAtivo buscaPrincipioAtivo(String principioAtivo) {
-        for(int i = 0; i < principiosAtivos.size(); i++)
-        {
-            if(principiosAtivos.get(i).getNome().equals(principioAtivo)) {
-                return principiosAtivos.get(i);
-            }
-        }
-        return null;
-    }
-    
-    private List<ItemPrincipioAtivo> getListaItemPrincipioAtivo() {
-        List<ItemPrincipioAtivo> listaItemPrincipiosAtivos = new ArrayList<ItemPrincipioAtivo>();
-        
-        for(int i=0;i < tabelaPrincipiosAtivos.getRowCount();i++){
-            ItemPrincipioAtivo itemPA = new ItemPrincipioAtivo(buscaPrincipioAtivo((String)tabelaPrincipiosAtivos.getValueAt(i,0)), (double)tabelaPrincipiosAtivos.getValueAt(i,1));
-            listaItemPrincipiosAtivos.add(itemPA);
-        }
-        return listaItemPrincipiosAtivos;
     }
     
     private void botaoAdicionarPrincipioAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarPrincipioAtivoActionPerformed

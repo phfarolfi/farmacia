@@ -14,13 +14,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaEstoque extends javax.swing.JFrame {
     private ControladorFarmacia controller;
-    List<Produto> produtos;
+    List<ItemEstoque> itensEstoque;
    
     public TelaEstoque(ControladorFarmacia controller) {
         initComponents();
         this.setSize(1280,751);
         this.controller = controller;
-        this.produtos = this.controller.getProdutos();
+        this.itensEstoque = this.controller.getItemEstoque();
         preencheTabelaEstoque();
     }
 
@@ -56,15 +56,22 @@ public class TelaEstoque extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CÓDIGO", "NOME", "PREÇO", "CATEGORIA", "FABRICANTE"
+                "CÓDIGO", "NOME", "PREÇO", "CATEGORIA", "FABRICANTE", "QUANTIDADE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tabelaEstoque);
@@ -105,14 +112,15 @@ public class TelaEstoque extends javax.swing.JFrame {
     private void preencheTabelaEstoque() {
         DefaultTableModel model = (DefaultTableModel) tabelaEstoque.getModel();
         
-        for(int i=0; i<produtos.size(); i++) {
-            int codigo = (int) this.produtos.get(i).getCodigo();
-            String nome = this.produtos.get(i).getNome();
-            double preco = this.produtos.get(i).getPreco();
-            String categoria = this.produtos.get(i).getCategoria().getNome();
-            String fabricante = this.produtos.get(i).getFabricante().getNome();
+        for(int i=0; i<itensEstoque.size(); i++) {
+            int codigo = (int) this.itensEstoque.get(i).getProduto().getCodigo();
+            String nome = this.itensEstoque.get(i).getProduto().getNome();
+            double preco = this.itensEstoque.get(i).getProduto().getPreco();
+            String categoria = this.itensEstoque.get(i).getProduto().getCategoria().getNome();
+            String fabricante = this.itensEstoque.get(i).getProduto().getFabricante().getNome();
+            int quantidade = this.itensEstoque.get(i).getQuantidade();
             
-            model.addRow(new Object[]{codigo, nome, preco, categoria, fabricante});
+            model.addRow(new Object[]{codigo, nome, preco, categoria, fabricante, quantidade});
         }
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();

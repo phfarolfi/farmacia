@@ -269,7 +269,7 @@ public class TelaFazerPedido extends javax.swing.JFrame {
     private Fornecedor buscaFornecedor(String fornecedor) {
         for(int i = 0; i < this.fornecedores.size(); i++)
         {
-            if(this.fornecedores.get(i).getNome() == fornecedor) {
+            if(this.fornecedores.get(i).getNome().equals(fornecedor)) {
                 return this.fornecedores.get(i);
             }
         }
@@ -304,7 +304,7 @@ public class TelaFazerPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAdicionarAoCarrinhoActionPerformed
 
     private void botaoFazerPedido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFazerPedido
-        // TODO add your handling code here:
+        this.controller.fazerPedido(tabelaProdutosSelecionados, buscaFornecedor((String) campoFornecedor.getSelectedItem()));
         this.controller.iniciarTelaInicial();
     }//GEN-LAST:event_botaoFazerPedido
 
