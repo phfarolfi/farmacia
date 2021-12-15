@@ -63,6 +63,7 @@ use_case\TelaFazerPedido$6.class
 use_case\TelaInicial$2.class
 use_case\TelaFazerPagamento$6.class
 use_case\TelaFazerPedido.class
+use_case\TelaVenda$11.class
 use_case\TelaFazerPagamento$10.class
 use_case\TelaVenda$2.class
 use_case\Medicamento.class

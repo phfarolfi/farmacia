@@ -49,6 +49,7 @@ public class TelaEstoque extends javax.swing.JFrame {
         });
 
         labelEstoque.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        labelEstoque.setForeground(new java.awt.Color(255, 49, 79));
         labelEstoque.setText("ESTOQUE");
 
         tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
