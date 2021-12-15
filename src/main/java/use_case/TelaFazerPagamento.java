@@ -19,6 +19,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         escondeFormularioCartao();
         campoSubtotalCompra.setText(this.telaVenda.getValorTotalDaCompra());
         this.controller = controller;
+        labelFormaPagamentoInvalido.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +44,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         botaoReceberPagamento = new javax.swing.JButton();
         labelSubtotalCompra = new javax.swing.JLabel();
         campoSubtotalCompra = new javax.swing.JTextField();
+        labelFormaPagamentoInvalido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fazer Pagamento");
@@ -189,6 +191,10 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             }
         });
 
+        labelFormaPagamentoInvalido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelFormaPagamentoInvalido.setForeground(new java.awt.Color(255, 0, 0));
+        labelFormaPagamentoInvalido.setText("Escolha a forma de pagamento!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,6 +227,10 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                         .addComponent(campoSubtotalCompra))
                     .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(95, 95, 95))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFormaPagamentoInvalido)
+                .addGap(236, 236, 236))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +271,9 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                         .addComponent(campoSubtotalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelFormaPagamentoInvalido)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
@@ -280,12 +292,15 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             mostraFormularioCartao();
             labelNumeroDeParcelas.setVisible(true);
             campoNumeroDeParcelas.setVisible(true);
+            labelFormaPagamentoInvalido.setVisible(false);
         } else if("Cartão de Débito".equals(campoFormaDePagamento.getSelectedItem())) {
             mostraFormularioCartao();
             labelNumeroDeParcelas.setVisible(false);
             campoNumeroDeParcelas.setVisible(false);
+            labelFormaPagamentoInvalido.setVisible(false);
         } else if("Dinheiro".equals(campoFormaDePagamento.getSelectedItem())){
             escondeFormularioCartao();
+            labelFormaPagamentoInvalido.setVisible(false);
         } else {
             escondeFormularioCartao();
         }
@@ -333,19 +348,21 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
 
     private void botaoReceberPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReceberPagamentoActionPerformed
         // TODO add your handling code here:
-        if(campoFormaDePagamento.getSelectedItem() == "Dinheiro") {
+        if(campoFormaDePagamento.getSelectedItem().equals("Dinheiro")) {
             this.controller.fazerVendaDinheiro(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()));
             this.controller.iniciarTelaInicial();
         }
-        else if(campoFormaDePagamento.getSelectedItem() == "Cartão de Crédito") {
+        else if(campoFormaDePagamento.getSelectedItem().equals("Cartão de Crédito")) {
             this.controller.fazerVendaCartaoCredito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText(), (campoNumeroDeParcelas.getSelectedIndex()+1));
             this.controller.iniciarTelaInicial();
         }
-        else {
+        else if(campoFormaDePagamento.getSelectedItem().equals("Cartão de Débito")){
             this.controller.fazerVendaCartaoDebito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText());
             this.controller.iniciarTelaInicial();
         }
-        
+        else {
+            labelFormaPagamentoInvalido.setVisible(true);
+        }
     }//GEN-LAST:event_botaoReceberPagamentoActionPerformed
 
     private void campoSubtotalCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSubtotalCompraActionPerformed
@@ -433,6 +450,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCodigoDeSeguranca;
     private javax.swing.JLabel labelFormaDePagamento;
+    private javax.swing.JLabel labelFormaPagamentoInvalido;
     private javax.swing.JLabel labelNomeImpressoNoCartao;
     private javax.swing.JLabel labelNumeroDeParcelas;
     private javax.swing.JLabel labelNumeroDoCartao;

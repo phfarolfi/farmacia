@@ -25,6 +25,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
 
     public TelaCadastrarProduto(ControladorFarmacia controller) {
         this.controller = controller;
+        this.produtos = this.controller.getProdutos();
         
         initComponents();
         labelPrincipioAtivo.setVisible(false);
@@ -410,24 +411,21 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoAdicionarProdutoAoEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoAoEstoqueActionPerformed
-        
-        if(campoCategoria.getSelectedItem() == "Medicamentos") {
-            System.out.println(produtos.get(produtos.size()-1).getNome());
+        if("Medicamentos".equals(campoCategoria.getSelectedItem())) {
             if(validaCamposProduto() && validaCamposMedicamento()) {
                 //Medicamento(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, Tarja tarja, List<ItemPrincipioAtivo> itemPrincipioAtivo){
                 Medicamento med = new Medicamento(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()), buscaTarja((String)campoTarja.getSelectedItem()), getListaItemPrincipioAtivo() );
-                produtos.add(med);
-                System.out.println(((Medicamento)produtos.get(produtos.size()-1)).getItemPrincipioAtivo().size());
+                this.produtos.add(med);
+                System.out.println(((Medicamento)this.produtos.get(this.produtos.size()-1)).getItemPrincipioAtivo().size());
                 
                 this.controller.iniciarTelaInicial();
             }
         }
         else {
-            System.out.println(produtos.get(produtos.size()-1).getNome());
             if(validaCamposProduto()){
                 Produto prod = new Produto(campoNome.getText(), campoDescricao.getText(), Double.parseDouble(campoPrecoDeVenda.getText()), buscaCategoria((String)campoCategoria.getSelectedItem()), buscaFabricante((String)campoFabricante.getSelectedItem()));
-                produtos.add(prod);
-                System.out.println(produtos.get(produtos.size()-1).getNome());
+                this.produtos.add(prod);
+                System.out.println(this.produtos.get(this.produtos.size()-1).getNome());
                 
                 this.controller.iniciarTelaInicial();
 
@@ -438,7 +436,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     private CategoriaProduto buscaCategoria(String categoria) {
         for(int i = 0; i < categorias.size(); i++)
         {
-            if(categorias.get(i).getNome() == categoria) {
+            if(categoria.equals(categorias.get(i).getNome())) {
                 return categorias.get(i);
             }
         }
@@ -448,7 +446,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     private Fabricante buscaFabricante(String fabricante) {
         for(int i = 0; i < fabricantes.size(); i++)
         {
-            if(fabricantes.get(i).getNome() == fabricante) {
+            if(fabricantes.get(i).getNome().equals(fabricante)) {
                 return fabricantes.get(i);
             }
         }
@@ -458,7 +456,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     private Tarja buscaTarja(String tarja) {
         for(int i = 0; i < tarjas.size(); i++)
         {
-            if(tarjas.get(i).getNome() == tarja) {
+            if(tarjas.get(i).getNome().equals(tarja)) {
                 return tarjas.get(i);
             }
         }
@@ -468,7 +466,7 @@ public class TelaCadastrarProduto extends javax.swing.JFrame {
     private PrincipioAtivo buscaPrincipioAtivo(String principioAtivo) {
         for(int i = 0; i < principiosAtivos.size(); i++)
         {
-            if(principiosAtivos.get(i).getNome() == principioAtivo) {
+            if(principiosAtivos.get(i).getNome().equals(principioAtivo)) {
                 return principiosAtivos.get(i);
             }
         }
