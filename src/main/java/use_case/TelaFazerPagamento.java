@@ -44,11 +44,11 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         botaoReceberPagamento = new javax.swing.JButton();
         labelSubtotalCompra = new javax.swing.JLabel();
         campoSubtotalCompra = new javax.swing.JTextField();
+        label1 = new javax.swing.JLabel();
         labelFormaPagamentoInvalido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fazer Pagamento");
-        setPreferredSize(new java.awt.Dimension(1280, 751));
         setResizable(false);
 
         botaoVoltar.setBackground(new java.awt.Color(18, 17, 73));
@@ -191,46 +191,58 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             }
         });
 
+        label1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 0, 0));
+
         labelFormaPagamentoInvalido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelFormaPagamentoInvalido.setForeground(new java.awt.Color(255, 0, 0));
-        labelFormaPagamentoInvalido.setText("Escolha a forma de pagamento!");
+        labelFormaPagamentoInvalido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFormaPagamentoInvalido.setText("Forma de pagamento inválida!");
+        labelFormaPagamentoInvalido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelNumeroDeParcelas)
-                    .addComponent(labelNomeImpressoNoCartao)
-                    .addComponent(labelNumeroDoCartao)
-                    .addComponent(labelFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNumeroDoCartao)
-                    .addComponent(campoFormaDePagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelValidade)
-                            .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoCodigoDeSeguranca, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCodigoDeSeguranca)))
-                    .addComponent(campoNomeImpressoNoCartao)
-                    .addComponent(campoNumeroDeParcelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelSubtotalCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                        .addComponent(campoSubtotalCompra))
-                    .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelFormaPagamentoInvalido)
-                .addGap(236, 236, 236))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelNumeroDeParcelas)
+                            .addComponent(labelNomeImpressoNoCartao)
+                            .addComponent(labelNumeroDoCartao)
+                            .addComponent(labelFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNumeroDoCartao)
+                            .addComponent(campoFormaDePagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelValidade)
+                                    .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoCodigoDeSeguranca, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelCodigoDeSeguranca)))
+                            .addComponent(campoNomeImpressoNoCartao)
+                            .addComponent(campoNumeroDeParcelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelSubtotalCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(campoSubtotalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelFormaPagamentoInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +274,9 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(labelNumeroDeParcelas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNumeroDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoNumeroDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(label1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
@@ -270,10 +284,10 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(campoSubtotalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelFormaPagamentoInvalido)
-                .addContainerGap(111, Short.MAX_VALUE))
+                        .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelFormaPagamentoInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         pack();
@@ -353,14 +367,27 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             this.controller.iniciarTelaInicial();
         }
         else if(campoFormaDePagamento.getSelectedItem().equals("Cartão de Crédito")) {
-            this.controller.fazerVendaCartaoCredito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText(), (campoNumeroDeParcelas.getSelectedIndex()+1));
-            this.controller.iniciarTelaInicial();
+            if(!campoValidade.getText().equals("__/__") && !campoValidade.getText().equals("") && !campoNomeImpressoNoCartao.getText().equals("") && !campoNumeroDoCartao.getText().equals("0000 0000 0000 0000") && !campoNumeroDoCartao.getText().equals("") && !campoCodigoDeSeguranca.getText().equals("000") && !campoCodigoDeSeguranca.getText().equals("")) {
+                this.controller.fazerVendaCartaoCredito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText(), (campoNumeroDeParcelas.getSelectedIndex()+1));
+                this.controller.iniciarTelaInicial();
+            }
+            else{
+                labelFormaPagamentoInvalido.setText("Dados do cartão inválidos!");
+                labelFormaPagamentoInvalido.setVisible(true);
+            }
         }
         else if(campoFormaDePagamento.getSelectedItem().equals("Cartão de Débito")){
-            this.controller.fazerVendaCartaoDebito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText());
-            this.controller.iniciarTelaInicial();
+            if(!campoValidade.getText().equals("__/__") && !campoValidade.getText().equals("") && !campoNomeImpressoNoCartao.getText().equals("") && !campoNumeroDoCartao.getText().equals("0000 0000 0000 0000") && !campoNumeroDoCartao.getText().equals("") && !campoCodigoDeSeguranca.getText().equals("000") && !campoCodigoDeSeguranca.getText().equals("")) {
+                this.controller.fazerVendaCartaoDebito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText());
+                this.controller.iniciarTelaInicial();
+            }
+            else {
+                labelFormaPagamentoInvalido.setText("Dados do cartão inválidos!");
+                labelFormaPagamentoInvalido.setVisible(true);
+            }
         }
         else {
+            labelFormaPagamentoInvalido.setText("Escolha uma forma de pagamento válida!");
             labelFormaPagamentoInvalido.setVisible(true);
         }
     }//GEN-LAST:event_botaoReceberPagamentoActionPerformed
@@ -448,6 +475,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
     private javax.swing.JTextField campoSubtotalCompra;
     private javax.swing.JTextField campoValidade;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label1;
     private javax.swing.JLabel labelCodigoDeSeguranca;
     private javax.swing.JLabel labelFormaDePagamento;
     private javax.swing.JLabel labelFormaPagamentoInvalido;
