@@ -59,7 +59,7 @@
                       <Component id="labelSubtotalCompra" pref="496" max="32767" attributes="0"/>
                       <Component id="campoSubtotalCompra" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jButton1" alignment="1" min="-2" pref="496" max="-2" attributes="0"/>
+                  <Component id="botaoReceberPagamento" alignment="1" min="-2" pref="496" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
           </Group>
@@ -106,7 +106,7 @@
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="campoSubtotalCompra" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="botaoReceberPagamento" min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="143" max="32767" attributes="0"/>
@@ -179,6 +179,7 @@
       <Events>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoNumeroDoCartaoFocusLost"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="campoNumeroDoCartaoMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNumeroDoCartaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelValidade">
@@ -235,6 +236,9 @@
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNomeImpressoNoCartaoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNumeroDeParcelas">
       <Properties>
@@ -289,7 +293,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="botaoReceberPagamento">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="4f" green="31" red="ff" type="rgb"/>
@@ -302,6 +306,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="RECEBER PAGAMENTO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoReceberPagamentoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSubtotalCompra">
       <Properties>
@@ -309,7 +316,7 @@
           <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="SUBTOTAL DA COMPRA (R$)"/>
+        <Property name="text" type="java.lang.String" value="TOTAL DA COMPRA (R$)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoSubtotalCompra">
@@ -320,6 +327,9 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoSubtotalCompraActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

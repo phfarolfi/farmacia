@@ -5,11 +5,13 @@ use_case\Produto.class
 use_case\TelaVenda$3.class
 use_case\Fabricante.class
 use_case\ItemPedido.class
+use_case\TelaEstoque$2.class
 use_case\TelaCadastrarProduto$1.class
 use_case\Venda.class
 use_case\TelaVenda$6.class
 use_case\TelaVenda.class
 use_case\TelaFazerPedido$2.class
+use_case\TelaFazerPedido$8.class
 use_case\TelaFazerPagamento$2.class
 use_case\Pagamento.class
 use_case\TelaInicial$1.class
@@ -30,6 +32,7 @@ use_case\ItemVenda.class
 use_case\TelaFazerPagamento$8.class
 use_case\ItemPrincipioAtivo.class
 use_case\TelaCadastrarProduto$2.class
+use_case\TelaVenda$10.class
 use_case\TelaFazerPedido$4.class
 use_case\TelaFazerPedido$1.class
 use_case\CartaoCredito.class
@@ -38,6 +41,7 @@ use_case\TelaEstoque$1.class
 use_case\TelaFazerPagamento$1.class
 use_case\ControladorFarmacia.class
 use_case\TelaCadastrarProduto$6.class
+use_case\TelaFazerPagamento$11.class
 use_case\TelaInicial$3.class
 use_case\TelaFazerPagamento$7.class
 use_case\TelaVenda$1.class

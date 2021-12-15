@@ -129,6 +129,11 @@ public class TelaVenda extends javax.swing.JFrame {
         campoValorTotalDaCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoValorTotalDaCompra.setText("0.00");
         campoValorTotalDaCompra.setRequestFocusEnabled(false);
+        campoValorTotalDaCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoValorTotalDaCompraActionPerformed(evt);
+            }
+        });
 
         botaoFazerPagamento.setBackground(new java.awt.Color(255, 49, 79));
         botaoFazerPagamento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -429,12 +434,21 @@ public class TelaVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_campoQuantidadeStateChanged
 
     private void botaoCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarVendaActionPerformed
-
+        limpaCampos();
+        valorTotal = 0.0;
+        campoValorTotalDaCompra.setText("0.00");
+        DefaultTableModel model = (DefaultTableModel) tabelaDeProdutos.getModel();
+        model.setRowCount(0);
+        
     }//GEN-LAST:event_botaoCancelarVendaActionPerformed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
         limpaCampos();
     }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void campoValorTotalDaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorTotalDaCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoValorTotalDaCompraActionPerformed
 
     private void limpaCampos() {
         botaoLimpar.setEnabled(false);

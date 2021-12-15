@@ -4,6 +4,8 @@
  */
 package use_case;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaFazerPagamento extends javax.swing.JFrame {
@@ -38,7 +40,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         campoNumeroDeParcelas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProdutosDaVenda = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        botaoReceberPagamento = new javax.swing.JButton();
         labelSubtotalCompra = new javax.swing.JLabel();
         campoSubtotalCompra = new javax.swing.JTextField();
 
@@ -83,6 +85,11 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                 campoNumeroDoCartaoMouseClicked(evt);
             }
         });
+        campoNumeroDoCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNumeroDoCartaoActionPerformed(evt);
+            }
+        });
 
         labelValidade.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelValidade.setText("VALIDADE (MM/AA)");
@@ -120,6 +127,11 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         labelNomeImpressoNoCartao.setText("NOME IMPRESSO NO CARTÃO");
 
         campoNomeImpressoNoCartao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoNomeImpressoNoCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNomeImpressoNoCartaoActionPerformed(evt);
+            }
+        });
 
         labelNumeroDeParcelas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelNumeroDeParcelas.setText("NÚMERO DE PARCELAS");
@@ -154,18 +166,28 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
         tabelaProdutosDaVenda.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaProdutosDaVenda);
 
-        jButton1.setBackground(new java.awt.Color(255, 49, 79));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("RECEBER PAGAMENTO");
+        botaoReceberPagamento.setBackground(new java.awt.Color(255, 49, 79));
+        botaoReceberPagamento.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        botaoReceberPagamento.setForeground(new java.awt.Color(255, 255, 255));
+        botaoReceberPagamento.setText("RECEBER PAGAMENTO");
+        botaoReceberPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoReceberPagamentoActionPerformed(evt);
+            }
+        });
 
         labelSubtotalCompra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelSubtotalCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelSubtotalCompra.setText("SUBTOTAL DA COMPRA (R$)");
+        labelSubtotalCompra.setText("TOTAL DA COMPRA (R$)");
 
         campoSubtotalCompra.setEditable(false);
         campoSubtotalCompra.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         campoSubtotalCompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoSubtotalCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSubtotalCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +219,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(labelSubtotalCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
                         .addComponent(campoSubtotalCompra))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
@@ -238,13 +260,14 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(campoSubtotalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoReceberPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.controller.setView(this.telaVenda);
         this.telaVenda.setVisible(true);
@@ -307,6 +330,35 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
             campoCodigoDeSeguranca.setText("000");
         }
     }//GEN-LAST:event_campoCodigoDeSegurancaFocusLost
+
+    private void botaoReceberPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReceberPagamentoActionPerformed
+        // TODO add your handling code here:
+        if(campoFormaDePagamento.getSelectedItem() == "Dinheiro") {
+            this.controller.fazerVendaDinheiro(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()));
+            this.controller.iniciarTelaInicial();
+        }
+        else if(campoFormaDePagamento.getSelectedItem() == "Cartão de Crédito") {
+            this.controller.fazerVendaCartaoCredito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText(), (campoNumeroDeParcelas.getSelectedIndex()+1));
+            this.controller.iniciarTelaInicial();
+        }
+        else {
+            this.controller.fazerVendaCartaoDebito(tabelaProdutosDaVenda, Double.parseDouble(campoSubtotalCompra.getText()), campoNumeroDoCartao.getText(), campoValidade.getText(), campoNomeImpressoNoCartao.getText());
+            this.controller.iniciarTelaInicial();
+        }
+        
+    }//GEN-LAST:event_botaoReceberPagamentoActionPerformed
+
+    private void campoSubtotalCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSubtotalCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSubtotalCompraActionPerformed
+
+    private void campoNumeroDoCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroDoCartaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNumeroDoCartaoActionPerformed
+
+    private void campoNomeImpressoNoCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeImpressoNoCartaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeImpressoNoCartaoActionPerformed
     
     private void criaTabela() {
         DefaultTableModel modelTelaPagamento = (DefaultTableModel) tabelaProdutosDaVenda.getModel();
@@ -369,6 +421,7 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoReceberPagamento;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.JTextField campoCodigoDeSeguranca;
     private javax.swing.JComboBox<String> campoFormaDePagamento;
@@ -377,7 +430,6 @@ public class TelaFazerPagamento extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumeroDoCartao;
     private javax.swing.JTextField campoSubtotalCompra;
     private javax.swing.JTextField campoValidade;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCodigoDeSeguranca;
     private javax.swing.JLabel labelFormaDePagamento;

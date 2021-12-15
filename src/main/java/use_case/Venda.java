@@ -7,18 +7,17 @@ import java.util.Date;
 public class Venda {
     private Date data;
     private boolean estaCompleta;
-    private List<Pagamento> pagamento;
+    private Pagamento pagamento;
     private List<ItemVenda> itemVenda;
-    private List<Receita> receita;
-    private Funcionario funcionario;
+//    private List<Receita> receita;
+//    private Funcionario funcionario;
 
-    Venda(Funcionario funcionario) {
+    public Venda() {
         this.data = new Date();
         this.estaCompleta = false;
-        this.pagamento = new ArrayList<Pagamento>();
         this.itemVenda = new ArrayList<ItemVenda>();
-        this.receita = new ArrayList<Receita>();   
-        this.funcionario = funcionario;
+//        this.receita = new ArrayList<Receita>();   
+//        this.funcionario = funcionario;
     }
 
     public Date getData() {
@@ -55,9 +54,9 @@ public class Venda {
         return false;
     }
     
-    public void registrarReceita(String foto) {
-        this.receita.add(new Receita(foto));
-    }
+//    public void registrarReceita(String foto) {
+//        this.receita.add(new Receita(foto));
+//    }
 
     public boolean validarVenda() {
         if(this.itemVenda.size() > 0)
@@ -81,22 +80,16 @@ public class Venda {
         return valor;
     }
 
-    public double valorPago(List<Pagamento> pagamentos) {
+    public double valorPago(Pagamento pagamento) {
         double valor = 0;
-        for(int i = 0 ; i < pagamentos.size(); i++){
-                valor += pagamentos.get(i).getValor();
-        }
-        return valor;
+//        for(int i = 0 ; i < pagamentos.size(); i++){
+//                valor += pagamentos.get(i).getValor();
+//        }
+        return pagamento.getValor();
     }
 
-    public void realizarPagamento(List<Pagamento> pagamentos) {
-        if(this.valorPago(pagamentos) == this.valorTotal()){
-            this.pagamento = pagamentos;
-        }
-                
-        else {
-            System.out.println("HELLO world. PLEASE, PAY THE CORRECT AMOUNT");
-        }
+    public void realizarPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 
     public void emitirNotaFiscal() {
