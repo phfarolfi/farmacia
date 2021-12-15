@@ -12,7 +12,7 @@ public class Pedido{
     private List<ItemPedido> itemPedido;
     private Fornecedor fornecedor;
     
-    Pedido(Fornecedor fornecedor) {
+    public Pedido(Fornecedor fornecedor) {
         this.dataFeito = new Date();
         this.pedidoFeito = false;
         this.pedidoEntregue = false;

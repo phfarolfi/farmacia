@@ -3,21 +3,15 @@ package use_case;
 import java.util.List;
 
 public class ItemEstoque {
-    private int quantidade;
     private Produto produto;
+    private int quantidade;
 
     // PRODUTO
-    ItemEstoque(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, int quantidade) {
-        this.produto = new Produto(nome, descricao, preco, categoria, fabricante);
+    public ItemEstoque(Produto produto, int quantidade) {
+        this.produto = produto;
         this.quantidade = quantidade;
     }
-
-    // MEDICAMENTO
-    ItemEstoque(String nome, String descricao, double preco, CategoriaProduto categoria, Fabricante fabricante, Tarja tarja, List<ItemPrincipioAtivo> itemPrincipioAtivo, int quantidade) {
-        this.produto = new Medicamento(nome, descricao, preco, categoria, fabricante, tarja, itemPrincipioAtivo);
-        this.quantidade = quantidade;
-    }
-    
+ 
     public int getQuantidade() {
         return this.quantidade;
     }
