@@ -20,7 +20,7 @@ public class ItemEstoque {
         return this.produto;
     }
 
-    public void setQuantidade(int quantidade){
-        this.quantidade = quantidade;
+    public void diminuirQuantidade(int quantidade){
+        this.quantidade -= quantidade;
     }
 }

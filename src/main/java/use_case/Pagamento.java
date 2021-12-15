@@ -7,7 +7,4 @@ public abstract class Pagamento {
         return this.valor;
     }
 
-
-
-
 }
