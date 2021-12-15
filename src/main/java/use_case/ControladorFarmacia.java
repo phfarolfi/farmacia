@@ -159,11 +159,53 @@ public class ControladorFarmacia {
         produtos.add(med4);
     }
     
+    private Produto buscaProduto(String nomeProduto) {
+        for(int i = 0; i < this.produtos.size(); i++)
+        {
+            if(this.produtos.get(i).getNome().equals(nomeProduto)) {
+                return this.produtos.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public void fazerVendaDinheiro(javax.swing.JTable tabelaProdutos, double valor) {
+//        List<ItemVenda> itemVenda = new ArrayList<ItemVenda>();
+        Venda venda = new Venda();
+        
+        for(int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            venda.criarItemVenda(buscaProduto((String)tabelaProdutos.getValueAt(i,1)),(int)tabelaProdutos.getValueAt(i,3));
+        }
+        
+        venda.realizarPagamento(new Dinheiro(valor, valor));
+    }
+    
+    public void fazerVendaCartaoCredito(javax.swing.JTable tabelaProdutos, double valor, String numeroCartao, String validade, String nome, int parcelas) {
+        Venda venda = new Venda();
+        
+        for(int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            venda.criarItemVenda(buscaProduto((String)tabelaProdutos.getValueAt(i,1)),(int)tabelaProdutos.getValueAt(i,3));
+        }
+
+        venda.realizarPagamento(new CartaoCredito(valor, numeroCartao, parcelas, nome, validade));
+    }
+    
+    public void fazerVendaCartaoDebito(javax.swing.JTable tabelaProdutos, double valor, String numeroCartao, String validade, String nome) {
+        Venda venda = new Venda();
+        
+        for(int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            venda.criarItemVenda(buscaProduto((String)tabelaProdutos.getValueAt(i,1)),(int)tabelaProdutos.getValueAt(i,3));
+        }
+
+        venda.realizarPagamento(new CartaoDebito(valor, numeroCartao, nome, validade));
+    }
+    
     public void iniciarTelaInicial() {
         javax.swing.JFrame viewAntiga = view;
+        viewAntiga.dispose();
         view = new TelaInicial(this);
         this.run();
-        viewAntiga.dispose();
+        
     }
 
     public void iniciarTelaVenda() {
