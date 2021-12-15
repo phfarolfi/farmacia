@@ -33,6 +33,10 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoCadastrarProduto = new javax.swing.JButton();
         botaoFazerPedido = new javax.swing.JButton();
         botaoEstoque = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial");
@@ -45,8 +49,9 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoVenda.setBackground(new java.awt.Color(0, 0, 51));
         botaoVenda.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botaoVenda.setForeground(new java.awt.Color(255, 49, 79));
-        botaoVenda.setText("VENDER");
+        botaoVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\phfar\\OneDrive\\Documentos\\NetBeansProjects\\Modelagem\\src\\main\\java\\use_case\\venda.png")); // NOI18N
         botaoVenda.setToolTipText("Iniciar uma venda");
+        botaoVenda.setDefaultCapable(false);
         botaoVenda.setPreferredSize(new java.awt.Dimension(250, 250));
         botaoVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +62,7 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoCadastrarProduto.setBackground(new java.awt.Color(0, 0, 51));
         botaoCadastrarProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botaoCadastrarProduto.setForeground(new java.awt.Color(255, 49, 79));
-        botaoCadastrarProduto.setText("CADASTRAR PRODUTO");
+        botaoCadastrarProduto.setIcon(new javax.swing.ImageIcon("C:\\Users\\phfar\\OneDrive\\Documentos\\NetBeansProjects\\Modelagem\\src\\main\\java\\use_case\\produto.png")); // NOI18N
         botaoCadastrarProduto.setToolTipText("Cadastrar um produto no estoque");
         botaoCadastrarProduto.setPreferredSize(new java.awt.Dimension(250, 250));
         botaoCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +74,8 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoFazerPedido.setBackground(new java.awt.Color(0, 0, 51));
         botaoFazerPedido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botaoFazerPedido.setForeground(new java.awt.Color(255, 49, 79));
-        botaoFazerPedido.setText("FAZER PEDIDO");
-        botaoFazerPedido.setToolTipText("Alterar informações de um produto");
+        botaoFazerPedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\phfar\\OneDrive\\Documentos\\NetBeansProjects\\Modelagem\\src\\main\\java\\use_case\\pedido.png")); // NOI18N
+        botaoFazerPedido.setToolTipText("Fazer um pedido para o fornecedor");
         botaoFazerPedido.setPreferredSize(new java.awt.Dimension(250, 250));
         botaoFazerPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,40 +86,74 @@ public class TelaInicial extends javax.swing.JFrame {
         botaoEstoque.setBackground(new java.awt.Color(0, 0, 51));
         botaoEstoque.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botaoEstoque.setForeground(new java.awt.Color(255, 49, 79));
-        botaoEstoque.setText("ESTOQUE");
+        botaoEstoque.setIcon(new javax.swing.ImageIcon("C:\\Users\\phfar\\OneDrive\\Documentos\\NetBeansProjects\\Modelagem\\src\\main\\java\\use_case\\estoque.png")); // NOI18N
+        botaoEstoque.setToolTipText("Consultar o estoque");
+        botaoEstoque.setPreferredSize(new java.awt.Dimension(250, 250));
         botaoEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEstoqueActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 49, 79));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("FAZER VENDA");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 49, 79));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("ESTOQUE");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 49, 79));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("CADASTRAR PRODUTO");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 49, 79));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("FAZER PEDIDO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(355, 355, 355)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(botaoEstoque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(355, 355, 355))
+                    .addComponent(botaoVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(236, 236, 236)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110))
+                    .addComponent(botaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFazerPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,5 +180,9 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton botaoEstoque;
     private javax.swing.JButton botaoFazerPedido;
     private javax.swing.JButton botaoVenda;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
